@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login VHT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<style>
+    body {
+        background-image: url("Background.jpg");
+        background-color: #ea8a45;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    html {
+        margin: 0 auto;
+    }
+
+    .main-text {
+        color: white;
+        font-size: 42px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .sub-text {
+        color: white;
+        font-size: 32px;
+        text-align: left;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    a:link {
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+    }
+
+    a:hover {
+        color: #b5b5b5;
+        border-radius: 5px;
+        padding: 5px;
+        text-decoration: none;
+    }
+
+    #btnEntrar {
+        background-color: #e8813c !important;
+        color: white !important;
+        border-radius: 10px !important;
+        font-size: 28px !important;
+        vertical-align: middle !important;
+        height: 65px !important;
+    }
+
+    #btnEntrar:hover {
+        background-color: #a85d2a !important;
+        color: white !important;
+        border-radius: 10px !important;
+        font-size: 28px !important;
+        vertical-align: middle !important;
+        height: 65px !important;
+    }
+
+
+    @media (min-width: 1200px) {
+
+        #maindiv {
+            margin-left: 21% !important;
+            margin-top: 20% !important;
+        }
+    }
+
+    @media (min-width: 576px) {
+        #maindiv {
+            margin-left: -14%;
+            margin-top: 40%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        #maindiv {
+            margin-top: 28%;
+            margin-left: 4%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        #maindiv {
+            margin-top: 20%;
+            margin-left: 14%;
+        }
+    }
+</style>
+
+<body>
+    <form>
+        <div class="container-fluid">
+            <div class="container">
+                <div id="maindiv" style="background-color:#16697b;width:633px;">
+                    <div style="height:650px;">
+                        <span class="dot" style="margin-top:-154px;height: 670px;width: 622px; background-color: #16697b;z-index: -2; border-radius: 50%;
+                        position: absolute;"></span>
+                        <center>
+                            <img src="logo.png" alt="VHT Logo"
+                                style="margin-top:-12%;width:270px;height:145px;z-index: +1;">
+                            <div class="main-text">
+                                Fazer Login
+                            </div>
+                            <div class="sub-text">
+                                <p>
+                                <div class="row">
+                                    <div class="col-sm-7 offset-1">
+                                        <label for="txtEmail" style="margin-top:-4px">&nbspEndereço de E-mail</label>
+                                        <input type="text" id="txtEmail" nome="txtEmail"
+                                            style="width: -webkit-fill-available;height:48px;font-size:25px !important">
+                                    </div>
+                                </div>
+                                </p>
+                                <div class="row">
+                                    <div class="col-sm-7 offset-1">
+                                        <label for="txtSenha" style="margin-top:-4px">&nbspSenha</label>
+                                        <input type="password" id="txtSenha" nome="txtSenha"
+                                            style="width: -webkit-fill-available;height:48px;font-size:25px !important">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row" style="font-size:25px !important;">
+                                    <div class="col-sm-11 offset-1">
+                                        <a href="TelaCadastro.html">Criar
+                                            Conta</a>&nbsp•&nbsp<a href="TelaSenha.html">Esqueci
+                                            Minha Senha</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row" style="font-size:25px !important;">
+                                    <div class="col-sm-6 offset-3">
+                                        <input type="button" class="form-control" id="btnEntrar" name="btnEntrar"
+                                            value="Entrar">
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</form>
+
+</html>

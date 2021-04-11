@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>VHT</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous"></script>
+
+</head>
+
+<style>
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    header {
+        background-color: #16697b;
+        padding: 10px;
+        margin-top: auto;
+    }
+
+    .logo {
+        height: 70px;
+        width: 170px;
+    }
+
+    .quartos {
+        display: inline-block;
+        position: absolute;
+        margin-right: 400px;
+        margin-left: 60px;
+    }
+
+    .cafe {
+        display: inline-block;
+        position: absolute;
+        margin-left: 150px;
+    }
+
+    .preco {
+        display: inline-block;
+        position: absolute;
+        margin-left: 320px;
+    }
+
+    .botaoExplorar {
+        display: inline-block;
+        position: absolute;
+        margin-left: 530px;
+    }
+
+    .botaoFazerLogin {
+        display: inline-block;
+        position: absolute;
+        margin-left: 700px;
+    }
+
+
+    body {
+        background-image: url(FUNDO\ PG\ PRICIPAL.jpg);
+        margin: 0px 0px 0px 0px;
+    }
+
+
+    header select {
+        height: 30px;
+        width: 60px;
+        border: 2px solid lightskyblue;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    a:hover {
+        background-color: rgba(0, 16, 32, .5)
+    }
+
+    .cafe label,
+    .quartos label,
+    .preco label {
+        color: white;
+    }
+
+    #chec {
+        margin-left: 850px;
+        display: none;
+    }
+
+    header a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        padding: 20px 5px;
+        margin-left: 0pc;
+    }
+
+    nav ul {
+        list-style: none;
+        padding-top: 40px;
+        padding-left: 0px;
+    }
+
+    nav li {
+        position: relative;
+        margin-left: 0px;
+        text-align: center;
+    }
+
+    #items-wrapper {
+        width: 100vw;
+    }
+
+    #items-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .item {
+        flex: none;
+        width: 100%;
+        height: 400px;
+        scroll-snap-align: start;
+        pointer-events: none;
+    }
+
+    #items {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+    }
+
+    .quartosOpcao {
+        width: 290px;
+        float: left;
+        height: 230px;
+        margin-left: 10%;
+        background-color: #e67d37;
+        padding-top: 10px;
+        padding-left: 10px;
+        border: 1px solid #db6618;
+    }
+
+    .quartosGeral {
+        justify-content: space-between;
+        display: left;
+        margin-left: 7%;
+        height: 230px;
+    }
+
+    .imgQuartos {
+        height: 80%;
+        width: 95%;
+    }
+
+    .quartosGeral a {
+        text-decoration: none;
+        color: black;
+        background-color: coral;
+    }
+
+    #loginbutton {
+        background-color: transparent !important;
+        border: 1px solid white !important;
+        color: white !important;
+    }
+
+    #loginbutton:hover {
+        background: #184750 !important;
+        color: white !important;
+        transition: background 0.5s, color 0.5s;
+
+    }
+
+    #cadastrarbutton {
+        background-color: white !important;
+        border: 1px solid white !important;
+        color: black !important;
+    }
+
+    #cadastrarbutton:hover {
+        background: #e8813c !important;
+        color: white !important;
+        transition: background 0.5s, color 0.5s;
+
+    }
+
+    #menubutton {
+        background-color: white;
+    }
+
+    #menubutton:hover {
+        background-color: #d9d9d9;
+    }
+
+    #seemore:hover {
+        background-color: #156e20 !important;
+    }
+
+    @media (max-width: 576px) {
+
+        .offset-1 {
+            margin-left: 0 !important;
+        }
+
+        #menuButtonThing {
+            float: left !important;
+            width: 100% !important;
+        }
+
+    }
+</style>
+
+
+<body>
+
+    <script>
+        document.querySelector("#items")
+            .addEventListener("wheel", event => {
+                if (event.deltaY > 0) {
+                    event.target.scrollBy(300, 0);
+                } else {
+                    event.target.scrollBy(-300, 0);
+                }
+            }
+
+            )
+    </script>
+
+
+    <header style="min-height: 100px;">
+
+
+
+
+        <div class="row" style="color:white">
+            <div class="col-sm-2">
+                <img src="Logo.png" class="logo">
+            </div>
+            <div class="col-sm-1">
+                <label for="">Quartos</label><br>
+                <select name="" id="" class="form-control">
+                    <option value="" selected>selecione*</option>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <label for="cafe">Cafe Da Manhã</label><br>
+                <select name="" id="cafe" class="form-control">
+                    <option value="" selected>selecione*</option>
+                    <option value="">Incluso</option>
+                    <option value="">Não Incluso</option>
+                </select>
+            </div>
+            <div class="col-sm-1">
+                <label for="preco">Preço Minimo</label><br>
+                <input type="text" id="valorQuarto" class="form-control">
+            </div>
+            <div class="col-sm-1">
+                <label for="preco">Preço Máximo</label><br>
+                <input type="text" id="ValorQuarto2" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <label for="">&nbsp</label><br>
+                <input type="button" value="Explorar" class="form-control" id="menubutton">
+            </div>
+            <div class="col-sm-1 offset-1">
+                <label for="">&nbsp</label><br>
+                <input type="button" value="Fazer Login" class="form-control" id="loginbutton"
+                    onclick="window.location.href='TelaLogin.html'">
+            </div>
+            <div class="col-sm-1">
+                <label for="">&nbsp</label><br>
+                <input type="button" value="Cadastrar-se" class="form-control" id="cadastrarbutton"
+                    onclick="window.location.href='TelaCadastro.html'">
+            </div>
+            <div class="col-sm-1">
+
+                <label for="">&nbsp</label><br>
+                <nav class="navbar navbar-light" style="padding:0">
+                    <button class="navbar-toggler  ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                        aria-expanded="false" aria-label="Toggle navigation" id="menubutton">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+        <div style="width:15%;float:right" id="menuButtonThing">
+            <div class="collapse" id="navbarToggleExternalContent"
+                style="position:absolute; z-index: +5;border-radius: 10px;">
+                <div class="bg-dark p-5" style="border-radius: 10px;">
+                    <center>
+                        <h5 class=" text-white h4">Opções</h5>
+                    </center>
+                    <br>
+                    <a href="#" class="btn btn-light" style="width: 100%;">
+                        <i class="fas fa-cog"></i> Configurações
+                    </a>
+                    <br>
+                    <br>
+                    <a href="#" class="btn btn-light" style="width: 100%;">
+                        <i class="fas fa-book-open"></i> Meus Agendamentos
+                    </a>
+                    <br>
+                    <br>
+                    <a href="#" class="btn btn-light" style="width: 100%;">
+                        <i class="fas fa-question"></i> Quem somos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </header>
+    <div id="items-wrapper">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="praia.jpg" style="height: 500px;" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="praia2.jpg" style="height: 500px;" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="IMAGEM QUARTO.jpg" style="height: 500px;" alt="Third slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="quartosGeral">
+
+        <div class="quartosOpcao">
+            <a href="">
+                <img src="IMAGEM QUARTO.jpg" alt="" class="imgQuartos"><br>
+                <span style="font-weight:700;vertical-align: middle;">R$150,00 p/Noite</span> <button type="button"
+                    class="btn btn-primary"
+                    style="margin-top: 3px;background-color:#428f4b;margin-right: 14px;float:right;border:1px solid #1c912b"
+                    id="seemore">Ver mais</button>
+            </a>
+
+        </div>
+
+        <div class="quartosOpcao">
+            <a href="">
+                <img src="IMAGEM QUARTO 2.jpg" alt="" class="imgQuartos"><br>
+                <span style="font-weight:700;vertical-align: middle;">R$250,00 p/Noite</span> <button type="button"
+                    class="btn btn-primary"
+                    style="margin-top: 3px;background-color:#428f4b;margin-right: 14px;float:right;border:1px solid #1c912b"
+                    id="seemore">Ver mais</button>
+            </a>
+
+        </div>
+
+        <div class="quartosOpcao">
+            <a href="">
+                <img src="IMAGEM QUARTO 3.jpg" alt="" class="imgQuartos"><br>
+                <span style="font-weight:700;vertical-align: middle;">R$300,00 p/Noite</span> <button type="button"
+                    class="btn btn-primary"
+                    style="margin-top: 3px;background-color:#428f4b;margin-right: 14px;float:right;border:1px solid #1c912b"
+                    id="seemore">Ver mais</button>
+            </a>
+
+        </div>
+
+    </div>
+    <br><br>
+
+    <script>
+        $(document).ready(function () {
+            $('#valorQuarto').mask('000.000.000.000.000,00', { reverse: true });
+
+            $('#ValorQuarto2').mask('000.000.000.000.000,00', { reverse: true });
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
