@@ -5,7 +5,7 @@
 
     if(!empty($logado)){
     $id = $_SESSION["id"];
-    $sql = "SELECT  * FROM  users where id = " .$id;
+    $sql = "SELECT  * FROM  user_funcionario where id_func = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -74,12 +74,12 @@
         </div>
       </li>
       <li class="nav-item" style="padding-left: 6px;">
-      <img src="https://lh3.googleusercontent.com/proxy/F2To8MMPRVEohFvMeVhD3-mlzuo6FPYq-Kwah1sDoNWNFR5_OFem-22PR0C6CE8ecRTBUubNHtUf14w2GCHJVFMppsix0B_35sb5SybOmhH29U8KOhH7ly54H9LHVD2eQ9POOs9VMQ" style="height:35px;cursor:pointer;margin-top:6px" onclick="window.location.href='logout.php'">
+      <img src="https://images.vectorhq.com/images/previews/0de/red-power-button-clip-art-89935.png" style="height:35px;cursor:pointer;margin-top:6px" onclick="window.location.href='logout.php'">
       </li>
   </div>
 </nav>
   <header class="u-clearfix u-header u-header" id="sec-8ae4" style="background: #cfcd55;color:white;padding:5px">
-      Olá <?php if(!empty($logado)){echo($row["first_name"]);};?>, bem vindo ao Portal Back-Office
+      Olá <?php if(!empty($logado)){echo($row["nome"]);};?>, bem vindo ao Portal Back-Office
   </header>
   </header>
 

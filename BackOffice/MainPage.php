@@ -54,30 +54,40 @@
 <!-- Seção dos gráficos -->
 
 
-<section style="min-height: 600px">
+<section>
 
 
 <br>
 <br>
-   <div class="container" style="width: 90% !important;max-width: 90%;border: 1px solid black;padding: 27px;">
+   <div class="container" style="width: 70% !important;max-width: 90%;border: 1px solid black;padding: 27px;">
       <div class="row">
          <div class="col-sm-4" style="border-right: 1px solid black;">
-            <div id="PieChartHold" style="height:400px"></div>
+            <div id="PieChartHold" style="height:300px"></div>
          </div>
          <div class="col-sm-8">
-            <div id="lineChartHold" style="height:400px"></div>
+            <div id="lineChartHold" style="height:300px"></div>
          </div>
       </div>
    </div>
-   <br>
-   <br>
+
+
+<?php 
+    require_once "config.php";
+
+    $sql = "SELECT (select count(*) from users) as qtdCliente,(select count(*) from user_funcionario) as qtdFunc";
+    
+    $result = mysqli_query($link, $sql);
+
+    $row = mysqli_fetch_array($result);
+            
+  ?>
 
 <script>
 
         // Adiciona os valores do gráfico e os nomes
         var data = [
-        {x: "Clientes", value: 30},
-        {x: "Funcionários", value: 9}
+        {x: "Clientes", value: <?php echo($row["qtdCliente"]);?>},
+        {x: "Funcionários", value: <?php echo($row["qtdFunc"]);?>}
         ];
 
         // Cria o gráfico e adiciona os valores a ele
@@ -93,6 +103,33 @@
         // Inicializa a vizualisação do gráfico
         chart.draw();
     </script>
+
+
+
+
+<?php 
+
+require_once "config.php";
+
+  $sql = "
+  select 
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '1') as Mes1,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '2') as Mes2,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '3') as Mes3,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '4') as Mes4,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '5') as Mes5,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '6') as Mes6,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '7') as Mes7,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '8') as Mes8,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '9') as Mes9,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '10') as Mes10,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '11') as Mes11,
+  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '12') as Mes12";
+    
+    $result = mysqli_query($link, $sql);
+
+    $row = mysqli_fetch_array($result);
+  ?>
 
 <script>
 
@@ -147,18 +184,18 @@
 
     function getData() {
       return [
-        ['Jan', 0],
-        ['Fev', 1],
-        ['Mar', 3],
-        ['Abr', 3],
-        ['Mai', 5],
-        ['Jun', 5],
-        ['Jul', 7],
-        ['Ago', 12],
-        ['Set', 13],
-        ['Out', 24],
-        ['Nov', 15],
-        ['Dez', 20],
+        ['Jan', <?php echo($row["Mes1"]);?>],
+        ['Fev', <?php echo($row["Mes2"]);?>],
+        ['Mar', <?php echo($row["Mes3"]);?>],
+        ['Abr', <?php echo($row["Mes4"]);?>],
+        ['Mai', <?php echo($row["Mes5"]);?>],
+        ['Jun', <?php echo($row["Mes6"]);?>],
+        ['Jul', <?php echo($row["Mes7"]);?>],
+        ['Ago', <?php echo($row["Mes8"]);?>],
+        ['Set', <?php echo($row["Mes9"]);?>],
+        ['Out', <?php echo($row["Mes10"]);?>],
+        ['Nov', <?php echo($row["Mes11"]);?>],
+        ['Dez', <?php echo($row["Mes12"]);?>],
       ];
     }
   
