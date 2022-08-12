@@ -42,7 +42,7 @@
 </head>
 
 
-<body class="u-body">
+<body class="u-body" style="background-color:#ebebeb">
 
 
 <!-- Incluir o Menu da página -->
@@ -59,7 +59,7 @@
 
 <br>
 <br>
-   <div class="container" style="width: 70% !important;max-width: 90%;border: 1px solid black;padding: 27px;">
+   <div class="container" style="width: 70% !important;max-width: 90%;border: 1px solid black;padding: 27px;background-color:white">
       <div class="row">
          <div class="col-sm-4" style="border-right: 1px solid black;">
             <div id="PieChartHold" style="height:300px"></div>

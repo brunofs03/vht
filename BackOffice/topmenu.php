@@ -31,7 +31,14 @@
     }
     .nav-link{
       color: white !important;
+       border-radius: 10px;
+       transition:background-color 0.3s !important;
     }
+    .nav-link:hover{
+       background-color: #474747;
+       transition:background-color 0.3s !important;
+    }
+
 
   </style>
 
@@ -40,9 +47,9 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin: auto;background-color: #292d33 !important">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin: auto;background-image: linear-gradient(#494a4a,#292d33);">
       <a class="u-image u-logo u-image-1" style="margin-top:0px">
-        <img src="images/logo3.png" class="u-logo-image u-logo-image-1" style="max-width: 110px;margin-right: 50px;">
+        <img src="images/logo3.png" class="u-logo-image u-logo-image-1" style="border-right: 1px solid white;max-width: 100px;margin-right: 20px;padding-right: 20px;;">
       </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPequeno" aria-controls="navbarPequeno" aria-expanded="false" aria-label="Toggle navigation" style="color:white;border-color: white !important;background-color:white">
     <span class="navbar-toggler-icon"  style="color:white;border-color: white !important;"></span>
@@ -58,7 +65,7 @@
           Quartos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="CadQuartos.php">Criar Quarto</a>
+          <a class="dropdown-item" href="CriacaoQuarto.php">Criar Quarto</a>
           <a class="dropdown-item" href="#">Editar Quarto</a>
         </div>
       </li>
@@ -74,11 +81,11 @@
         </div>
       </li>
       <li class="nav-item" style="padding-left: 6px;">
-      <img src="https://images.vectorhq.com/images/previews/0de/red-power-button-clip-art-89935.png" style="height:35px;cursor:pointer;margin-top:6px" onclick="window.location.href='logout.php'">
+      <img src="images/powerButton.png" style="height:25px;cursor:pointer;margin-top:12px" onclick="window.location.href='logout.php'">
       </li>
   </div>
 </nav>
-  <header class="u-clearfix u-header u-header" id="sec-8ae4" style="background: #cfcd55;color:white;padding:5px">
+  <header class="u-clearfix u-header u-header" id="sec-8ae4" style="background: #c4c229;color:white;padding:5px">
       Olá <?php if(!empty($logado)){echo($row["nome"]);};?>, bem vindo ao Portal Back-Office
   </header>
   </header>
