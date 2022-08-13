@@ -99,7 +99,7 @@
       <div style="background-color:white;height:311px;width:511px;margin-left:2%;border:1px solid #ddd;padding:5px">
         <div style="display:flex">
           <label class="upload-image" style="position:absolute;margin-left:5px;margin-top:5px;cursor:pointer" for="ImportImgQuarto">
-              <input type='file' class="imgInp" data-id='img1' id="ImportImgQuarto" />
+              <input type='file' class="imgInp" data-id='img1' id="ImportImgQuarto" name="ImportImgQuarto" />
           </label>
           <br>
           <img id="img1" src="images/placeholder-500x300.png" alt="Imagem do quarto" height="300" width="500" style=" margin: auto;" />
@@ -115,11 +115,15 @@
       </div>
       <div style="background-color:white;height:311px;width:100%;border:1px solid #ddd;padding:10px">
         <div class="row" style="margin:0">
-          <div class="col-sm-6">
+          <div class="col-sm-4">
+            <label for="txtNum">Número do quarto: <span style="color:red">*</label>
+            <input type="text" class="form-control" id="txtNum" name="txtNum">
+          </div>
+          <div class="col-sm-4">
             <label for="txtPreco">Preço da diária: <span style="color:red">*</label>
             <input type="text" class="form-control" id="txtPreco" name="txtPreco">
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <label for="slcEstrelas">Estrelas (Classificação): <span style="color:red">*</label>
            <select id="slcEstrelas" name="slcEstrelas" class="form-control">
               <option value="1">★ </option>
@@ -217,8 +221,12 @@
               data:formdata,
               processData: false,
               contentType: false,
-              success: function(html){
-                alert('Quarto cadastrado com sucesso!');
+              success: function(retorno){
+                alert(retorno.mensagem);
+
+                if(retorno.sucesso == 1){
+                  document.getElementById('formCadastro').submit();
+                }
               },
               error:function(){
                 alert('Ocorreu um erro ao cadastrar o quarto!');
