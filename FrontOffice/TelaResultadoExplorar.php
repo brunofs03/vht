@@ -53,14 +53,12 @@
         <div class="u-container-layout u-valign-middle u-container-layout-1" style="padding: 15px;  ">
             <div class="row">
             <div class="col-sm-2">
-                <label for="">Estrelas</label><br>
+                <label for="estrelasSelect">Classificação</label><br>
                 <select name="estrelasSelect" id="estrelasSelect" class="form-control">
-                    <option value="" style="color: black;" selected>selecione*</option>
-                    <option value="1" style="color: black;font-size:20px">★✰✰✰✰</option>
-                    <option value="2" style="color: black;font-size:20px">★★✰✰✰</option>
-                    <option value="3" style="color: black;font-size:20px">★★★✰✰</option>
-                    <option value="4" style="color: black;font-size:20px">★★★★✰</option>
-                    <option value="5" style="color: black;font-size:20px">★★★★★</option>
+                    <option value="" selected>Selecione *</option>
+                    <option value="1">Standard</option>
+                    <option value="2">Master</option>
+                    <option value="3">Deluxe</option>
                 </select>
             </div>
             <div class="col-sm-4">
@@ -120,22 +118,18 @@
                 echo ");background-position: center;background-size: cover;'></div>";
                 echo "<div style='color: black;display:flex;padding: 10px;width: 100%;background-color: rgba(189, 189, 189, 0.8);font-weight:700;vertical-align: middle;width:100%;font-size: 22px;text-align: center;'>";
                 echo "<div style='width:50%;'>";
-                echo "<span style='font-weight:700;vertical-align: middle;font-size: 18px;'>R$ ";
+                echo "<span style='font-weight:700;vertical-align: middle;font-size: 16px;'>A partir de R$ ";
                 echo number_format($row[1], 2, ',', ' ');
-                echo " p/Noite </span>";
+                echo "</span>";
                 echo "</div>";
                 echo "<div style='width:50%;'>";
 
                 if($row[4] == 1){
-                    echo "<div style='color: yellow;font-size: 22px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:left;margin: auto;'>★<span style='color:#bfbfbf'>★★★★</span></div>";
+                    echo "<div style='color: white;font-size: 16px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
                 }else if($row[4] == 2){
-                    echo "<div style='color: yellow;font-size: 22px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:left;margin: auto;'>★★<span style='color:#bfbfbf'>★★★</span></div>";
+                    echo "<div style='color: white;font-size: 16px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
                 }else if($row[4] ==3){
-                    echo "<div style='color: yellow;font-size: 22px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:left;margin: auto;'>★★★<span style='color:#bfbfbf'>★★</span></div>";
-                }else if($row[4] == 4){
-                    echo "<div style='color: yellow;font-size: 22px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:left;margin: auto;'>★★★★<span style='color:#bfbfbf'>★</span></div>";
-                }else if($row[4] == 5){
-                    echo "<div style='color: yellow;font-size: 22px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:left;margin: auto;'>★★★★★</div>";
+                    echo "<div style='color: white;font-size: 16px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
                 }
                 echo "</div></div></div></div>";
             }

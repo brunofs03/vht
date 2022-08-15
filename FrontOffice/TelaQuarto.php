@@ -44,6 +44,14 @@
         stroke: #b3b3b3 !important;
         border: 1px solid #b3b3b3 !important;
     }
+    .u-palette-5-light-3, .u-body.u-palette-5-light-3, .u-container-style.u-palette-5-light-3:before, .u-table-alt-palette-5-light-3 tr:nth-child(even) {
+        color: #2c2c2c;
+        background-color: #222222 !important;
+        border: 1px solid #481f1f;
+        background-image: linear-gradient(#ffffff, #ffffff);
+        padding: 10px;
+        border-radius: 16px;
+    }
   </style>
 </head>
 
@@ -82,11 +90,11 @@
   ?>
 
     <div style="background-color:#e6e6e6">
-        <section class="u-clearfix u-image u-section-4" id="carousel_5804" style="background-image: url(https://1.bp.blogspot.com/-viLzUGAq_lk/XdnMog083AI/AAAAAAAAf7Y/d4pIAnZFFn0a7VpdzdqLXYoEiQdK432yACLcBGAsYHQ/s2560/mountains-reflection-sunlight-a5-2560x1440.jpg);height: 831px;">
+        <section id="carousel_5804" style="background-image: linear-gradient(#878484, #141212);height: 831px;">
             <div class="u-clearfix u-sheet u-sheet-1" style="min-height: 0px;">
                 <div class="u-align-center-lg u-align-center-md u-align-center-xl u-align-center-xs u-container-style u-group u-opacity u-opacity-90 u-palette-5-light-3 u-group-1" style="width: 482px;min-height: 156px;margin: 50px auto;">
                     <div class="u-container-layout u-valign-middle u-container-layout-1">
-                        <h2 class="u-align-center-sm u-custom-font u-font-georgia u-text u-text-1">Quarto <?php echo $row[2] ?></h2>
+                        <h2 class="u-align-center-sm u-custom-font u-font-georgia u-text u-text-1"  style="font-family: Roboto;font-size: 40px;">Quarto <?php echo $row[2] ?></h2>
                         <img src="images/faixaDourada.png" alt="" class="u-image u-image-default u-image-1" data-image-width="680" data-image-height="80">
                     </div>
                 </div>
@@ -97,60 +105,67 @@
                     <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-1">
                         <div class="u-container-layout u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs">
                             <div class="formQuarto">
-                                <div id="items-wrapper" class="carrosel">
-                                        <img class="d-block w-100" src="<?php echo $row[5]; ?>" style="height: 350px;" alt="First slide">
+                                <div id="items-wrapper" class="carrosel" style="border-width: 2px;">
+                                        <img class="d-block w-100" src="<?php echo $row[5]; ?>" style="height: 350px;" alt="Imagem do quarto">
                                 </div>
 
                                 <div class="informacoes">
-                                    <h2 style="margin-bottom: 0 !important;">R$ <?php echo number_format($row[1], 2, ',', ' '); ?> por noite</h2>
-                                    <?php if($row[4] == 1){
-                                        echo "<span style='color:#e3cc7f;font-size: 2.25rem;margin-left: 10px;'>★✰✰✰✰</span>";
-                                    }else if($row[4] == 2){
-                                        echo "<span style='color:#e3cc7f;font-size: 2.25rem;margin-left: 10px;'>★★✰✰✰</span>";
-                                    }else if($row[4] ==3){
-                                        echo "<span style='color:#e3cc7f;font-size: 2.25rem;margin-left: 10px;'>★★★✰✰</span>";
-                                    }else if($row[4] == 4){
-                                        echo "<span style='color:#e3cc7f;font-size: 2.25rem;margin-left: 10px;'>★★★★✰</span>";
-                                    }else if($row[4] == 5){
-                                        echo "<span style='color:#e3cc7f;font-size: 2.25rem;margin-left: 10px;'>★★★★★</span>";
-                                    } ?>
-                                    <div class="barra"></div>
-                                    <br>
-                                    <div class="status">
-                                        <h2>Status:</h2>
+                                    <div  style="border-bottom: 2px solid #cdcdcd;height: 180px;width:100%">
+                                        <h2 style="margin-bottom: 0 !important;">A partir de R$ <?php echo number_format($row[1], 2, ',', ' '); ?></h2>
+                                        <div style="margin-bottom: 10px;margin-top:10px;font-size: 20px;">
 
+
+                                        <div class="status" style="width:125px">Classificação:</div>
+                                        <?php 
+                                            if($row[4] == 1){
+                                                echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
+                                            }else if($row[4] == 2){
+                                                echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
+                                            }else if($row[4] ==3){
+                                                echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
+                                            } ?>
+                                        </div>
+                                        <br>
+                                        <div class="status" style="width:125px">
+                                            <h2 style="font-size:20px;margin: 0;margin-top: 6px;">Status:</h2>
+
+                                        </div>
+                                        <div class="<?php 
+                                        if($row[3] == 'Disponível'){
+                                            echo "livre";
+                                        }else{
+                                            echo "ocupado";
+                                        }; 
+
+
+
+                                            ?>">
+                                            <?php echo $row[3]; ?>
+                                        </div>
                                     </div>
-                                    <div class="<?php 
-                                    if($row[3] == 'Disponível'){
-                                        echo "livre";
-                                    }else{
-                                        echo "ocupado";
-                                    }; 
-
-
-
-                                        ?>">
-                                        <h5><?php echo $row[3]; ?></h5>
-                                    </div><br>
-                                    <h5 style="width: 417px;"><?php echo $row[6]; ?></h5>
+                                    <br>
+                                    <br>
+                                    <div style="border-bottom: 2px solid #cdcdcd;height: 151px;">
+                                        <h5 style="width: 417px;"><?php echo $row[6]; ?></h5>
+                                    </div>
                                 </div>
 
                                 <div class="informacoes" style="top: 411px;left: 14px;">
                                     <div class="data1" style="width: 245px;">
                                         <label for="dataInicial">Data Inicial</label>
-                                        <input type="date" name="dataInicial" id="dataInicial" class="form-control">
+                                        <input type="date" name="dataInicial" id="dataInicial" class="form-control" style="background-color: gainsboro;">
 
                                     </div>
                                     <div class="data2" style="width: 245px;">
                                         <label for="dataFinal">Data Final</label>
-                                        <input type="date" name="dataFinal" id="dataFinal" class="form-control">
+                                        <input type="date" name="dataFinal" id="dataFinal" class="form-control" style="background-color: gainsboro;">
                                     </div>
 
                                     <div class="u-form-group u-form-submit" id="btns">
-                                        <a href="http://localhost/vht/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
+                                        <a href="http://localhost/vht/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
                                         <input type="button" value="submit" class="u-form-control-hidden">
 
-                                        <a <?php if($row[3] == 'Disponível'){echo 'onclick="irParaAgendamento()"';} ?> class="u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-font-georgia u-palette-5-base u-btn-1" style="width: 200px;<?php if($row[3] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row[3] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
+                                        <a <?php if($row[3] == 'Disponível'){echo 'onclick="irParaAgendamento()"';} ?> class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1" style="width: 200px;<?php if($row[3] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row[3] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
                                         <input type="button" value="submit" class="u-form-control-hidden">
 
                                     </div>
@@ -201,8 +216,8 @@
         padding-left: 10px;
         padding-top: 33px;
         padding-left: 30px;
-        background-color: #888888;
-        color: white;
+        background-color: white;
+        color: #111111;
         display: inline-flexbox;
         width: 1000px;
         margin: auto;
@@ -225,7 +240,7 @@
     }
     
     .barra {
-        background-color: white;
+        background-color: #111111;
         height: 2px;
         width: 380px;
         margin-bottom: 5px;
@@ -237,25 +252,32 @@
         position: sticky;
     }
     .livre{
-        background-color: green;
-        border-radius: 6px;
-        padding-left: 8px;
-        padding-right: 8px;
-        padding-top: 8px;
-        margin-top: 21px;
-        position: absolute;
-        margin-left: 8px;
+            color: white;
+            font-size: 18px;
+            background-color: green;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 7px;
+            width: 120px;
+            text-align: center;
+            margin: auto;
 
     }
     .ocupado {
-        background-color: red;
-        border-radius: 6px;
-        padding-left: 8px;
-        padding-right: 8px;
-        padding-top: 8px;
-        margin-top: 21px;
-        position: absolute;
-        margin-left: 8px;
+     
+            color: white;
+            font-size: 18px;
+            background-color: red;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 7px;
+            width: 120px;
+            text-align: center;
+            margin: auto;
     }
     
     #btns {

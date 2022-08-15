@@ -29,8 +29,10 @@
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
   <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
   <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   
   <meta property="og:title" content="Página Inicial">
   <meta property="og:type" content="website">
@@ -68,6 +70,21 @@
   cursor:pointer;
   background-size:30px 30px;
   transition: 0.5s;
+}
+ .descricao{
+ display: none;
+ background-color: #1c1c1c;
+ color: white;
+ padding: 5px;
+ border-radius: 5px;
+ position: absolute;
+ z-index: 999;
+ }
+ #Pdescricao:hover ~ p{
+ display: block;
+ }
+ p:not(.u-text-variant) {
+    margin:0 !important;
 }
   </style>
 </head>
@@ -113,35 +130,41 @@
       <div style="background-color:#292d33;height:50px;width:100%;border:1px solid #ddd;padding:10px;font-size: 18px;text-align: center;color: white;border-top-left-radius: 20px;border-top-right-radius: 20px;">
         Sobre o quarto
       </div>
-      <div style="background-color:white;height:311px;width:100%;border:1px solid #ddd;padding:10px">
+      <div style="background-color:white;height:330px;width:100%;border:1px solid #ddd;padding:10px">
         <div class="row" style="margin:0">
           <div class="col-sm-4">
-            <label for="txtNum">Número do quarto: <span style="color:red">*</label>
-            <input type="text" class="form-control" id="txtNum" name="txtNum">
+            <label for="txtNum">Número do quarto: <span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="txtNum" name="txtNum" onkeypress="return SomenteNumero()" maxlength="4">
           </div>
           <div class="col-sm-4">
-            <label for="txtPreco">Preço da diária: <span style="color:red">*</label>
+            <label for="txtPreco"  id='Pdescricao'>Preço base da diária: <span style="color:red">*</span>  <i class="fa-solid fa-circle-info"></i></label>
+            <p class="descricao" style="font-family: Roboto;">Preço aplicável de Seg a quinta, com 20% a mais no preço em dias de sexta a domingo</p>
             <input type="text" class="form-control" id="txtPreco" name="txtPreco">
           </div>
           <div class="col-sm-4">
-            <label for="slcEstrelas">Estrelas (Classificação): <span style="color:red">*</label>
+            <label for="slcEstrelas">Classificação: <span style="color:red">*</span></label>
            <select id="slcEstrelas" name="slcEstrelas" class="form-control">
-              <option value="1">★ </option>
-              <option value="2">★ ★ </option>
-              <option value="3">★ ★ ★ </option>
-              <option value="4">★ ★ ★ ★ </option>
-              <option value="5">★ ★ ★ ★ ★ </option>
+              <option value="" selected>selecione*</option>
+              <option value="1">Standard</option>
+              <option value="2">Master</option>
+              <option value="3">Deluxe</option>
             </select>
           </div>
         </div>
         <br>
         <div class="row" style="margin:0">
           <div class="col-sm-12">
-            <label for="txtPreco">Descrição do quarto: <span style="color:red">*</label>
-            <textarea id="txtDescricao" name="txtDescricao" class="form-control" rows="5" style="resize: none"></textarea>
+            <label for="txtPreco">Descrição do quarto: <span style="color:red">*</span></label>
+            <textarea id="txtDescricao" name="txtDescricao" class="form-control" maxlength="500" rows="5" style="resize: none" onkeyup="ContadorCaracter()"></textarea>
+            <label id="quantidadeLetras">0/500</label>
           </div>
         </div>
-        <br>
+        <script>
+          function ContadorCaracter(){
+            document.getElementById("quantidadeLetras").innerHTML = document.getElementById("txtDescricao").value.length + '/500'
+          }
+
+        </script>
         <div class="row" style="margin:0">
           <div class="col-sm-9">
           </div>
@@ -153,7 +176,19 @@
   </div>
 
   </section>
+  <br>
 </form>
+
+<script>
+  function SomenteNumero(){
+  var tecla=(window.event)?event.keyCode:e.which;
+  if((tecla>47 && tecla<58)) return true;
+  else{
+  if (tecla==8 || tecla==0) return true;
+  else  return false;
+  }
+  }
+</script>
 
 <script>
    function ImageSetter(input,target) {
@@ -203,7 +238,7 @@
         }
 
         if(document.getElementById('slcEstrelas').value == ''){
-          mensagem = mensagem + '\n- Estrelas (Classificação)'
+          mensagem = mensagem + '\n- Classificação'
         }
 
         if(document.getElementById('txtDescricao').value == ''){
