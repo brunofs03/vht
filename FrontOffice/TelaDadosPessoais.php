@@ -3,7 +3,7 @@
     <div class="container" style="background-color: rgb(255, 255, 255);box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);min-height: 580px;">
         <br>
         <div class="progress-bar2" style="width:75%;margin-left:12.5%">
-            <div class="step2" style="color: #1abc9c;background-color: #1abc9c"></div>
+            <div class="step2" style="color: #e1e05b;background-color: #e1e05b"></div>
             <div class="step2"></div>
             <div class="step2"></div>
             <div class="step2"></div>

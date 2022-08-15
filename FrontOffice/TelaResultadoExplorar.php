@@ -78,9 +78,35 @@
       </div>
     </div>
   </section>
-
   <?php 
     require_once "config.php";
+
+
+    $sqlPrimeiro = "
+    update quartos set disponibilidade = 'Disponível' where id_quarto not in(
+    select quartos.id_quarto from quartos
+    inner join tb_agendamentos on tb_agendamentos.id_quarto = quartos.id_quarto
+    where tb_agendamentos.dt_inicio >= convert(now(),DATE) and dt_fim <= convert(now(),DATE)
+    )";
+
+
+    $resultPrimeiro = mysqli_query($link, $sqlPrimeiro);
+
+
+    $sqlSegundo = "
+    update quartos set disponibilidade = 'Ocupado' where id_quarto in(
+    select quartos.id_quarto from quartos
+    inner join tb_agendamentos on tb_agendamentos.id_quarto = quartos.id_quarto
+    where tb_agendamentos.dt_inicio >= convert(now(),DATE) and dt_fim <= convert(now(),DATE)
+    )";
+
+
+    $resultSegundo = mysqli_query($link, $sqlSegundo);
+
+    
+  ?>
+
+  <?php 
 
 
     $sql = "SELECT * FROM quartos order by num_quarto asc";
