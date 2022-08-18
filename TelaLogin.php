@@ -288,7 +288,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   <input type="checkbox" checked="checked" name="manterLog" id="manterLog" />
                   <div class="control__indicator"></div>
                 </label>
-                <span class="ml-auto"><a href="FrontOffice/TelaSenha/TelaSenha2.php" class="forgot-pass">Esqueceu a senha</a></span>
+                <span class="ml-auto"><a href="FrontOffice/TelaSenha2.php" class="forgot-pass">Esqueceu a senha</a></span>
               </div>
               <p class="mb-4">Não possui uma conta? <a href="FrontOffice/telaCadastro.php" >Clique aqui</a>.</p>
 

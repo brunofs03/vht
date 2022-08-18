@@ -419,7 +419,7 @@ div.datepicker {
                                     </div>
                                 </div>
 
-                                <div class="informacoes" style="top: 411px;left: 14px;">
+                                <div class="informacoes" style="top: 411px;left: 14px;" <?php echo (!(isset($_SESSION["id"]))) ? 'hidden' : '' ?>>
                                     <div class="data1" style="width: 245px;">
                                         <!-- <label for="dataInicial">Data Inicial</label>
                                         <input type="date" name="dataInicial" id="dataInicial" class="form-control" style="background-color: gainsboro;">
@@ -429,6 +429,7 @@ div.datepicker {
                                         <!-- <label for="dataFinal">Data Final</label>
                                         <input type="date" name="dataFinal" id="dataFinal" class="form-control" style="background-color: gainsboro;"> -->
                                     </div>
+
 
                                     <div class="u-form-group u-form-submit" id="btns">
                                         <a href="http://localhost/vht/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
