@@ -177,3 +177,9 @@ insert into quartos(
 	'https://cf.bstatic.com/images/hotel/max1024x768/147/147126143.jpg',
 	'Suite simples com três camas de solteiro, sacada ampla com vitro. banheiro pequeno com banheira e uma televisão com filmes inclusos.'
 );
+
+create table tb_redefinicao_senha(
+	id_user int,
+    token varchar(50),
+    status int
+)

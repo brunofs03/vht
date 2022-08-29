@@ -38,7 +38,7 @@
   <div class="collapse navbar-collapse" id="navbarPequeno">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-      <a class="nav-link" href="mainPage.php">Páginas Iniciais</a>
+      <a class="nav-link" href="mainPage.php">Página Inicial</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="TelaResultadoExplorar.php">Explorar</a>

@@ -78,23 +78,23 @@
     }
     
     .step2.active {
-      background-color: #1abc9c;
+      background-color: #e1e05b;
     }
     .step2.active:after {
-      background-color: #1abc9c;
+      background-color: #e1e05b;
     }
     .step2.active:before {
-      color: #1abc9c;
+      color: #e1e05b;
     }
     .step2.active + .step2 {
-      background-color: #1abc9c;
+      background-color: #e1e05b;
     }
     .step2.active + .step2:before {
-      color: #1abc9c;
+      color: #9d9c15;
     }
     
     .step2:nth-child(1):before {
-      color: #1abc9c;
+      color: #9d9c15;
       content: 'Dados';
     }
     .step2:nth-child(2):before {
@@ -207,13 +207,13 @@
     }
     
     .back-btn2 {
-      color: #1abc9c;
+      color: #363636;
       background: #fff;
     }
     
     .next-btn2 {
       color: #fff;
-      background: #1abc9c;
+      background: #363636;
     }
     
     .btn2:focus {
