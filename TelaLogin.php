@@ -256,7 +256,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body style="height:100%">
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" style="height:100%">
-  <div class="d-lg-flex half" style="height:100%">
+  <div class="d-lg-flex half" style="height:100%;min-height:auto">
     <div class="bg order-2 order-md-1" style="background-image: url('FrontOffice/images/FundoLogin.png');"></div>
     <div class="contents order-1 order-md-2">
 
@@ -303,6 +303,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   </div>
 </form>
+
+<script>
+  <?php 
+    if(isset($_GET['success']) && $_GET['success'] == '1'){
+      echo "alert(`Usuário cadastrado com sucesso!\n\nRealize o login com as informações cadastradas`);";
+    }
+  ?>
+</script>
 
 
 
