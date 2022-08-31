@@ -7,4 +7,11 @@ session_start();
         $logado = '1';
     };
 
+    
+  if($_SERVER['SERVER_NAME'] == 'localhost'){
+    $varPath = '/VHT/';
+  }else{
+    $varPath = 'http://vht.mytcc.com.br/';
+  } 
+
 ?>

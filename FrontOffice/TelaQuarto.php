@@ -5,40 +5,32 @@
 
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+  <!--- Importação CSS --->
+  <link rel="stylesheet" type="text/css" href="/VHT/FrontOffice/Content/library/BootstrapFirst.min.css">
+  <link rel="stylesheet" type="text/css" href="/VHT/FrontOffice/Content/library/BootstrapSecond.min.css">
+
+
+  <!--- Importação Fontes --->
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontAwesomeMain.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontFamilyRoboto.css">
+
+  <!--- Importação Javascript --->
+  <script src="/VHT/FrontOffice/Content/library/jquery.min.js"></script>
+  <script src="/VHT/FrontOffice/Content/library/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/css/estiloPrincipal.css" media="screen">
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/css/mainPage.css" media="screen">
+
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/css/jquery-ui.css">
+  <script src="/VHT/FrontOffice/Content/js/jquery-1.10.2.js"></script>
+  <script src="/VHT/FrontOffice/Content/js/jquery-ui.js"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>VHT</title>
-  <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<link rel="stylesheet" type="text/css" href="Content/css/util.css">
-  <link rel="stylesheet" href="Content/css/estiloPrincipal.css" media="screen">
-  <link rel="stylesheet" href="Content/css/mainPage.css" media="screen">
-  <script class="u-script" type="text/javascript" src="Content/js/javascriptPrincipal.js" defer=""></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <meta property="og:title" content="Página Inicial">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#478ac9">
 
   <style>
     .u-border-grey-30, .u-separator-grey-30:after {
@@ -64,9 +56,10 @@
 
     $id = $_GET['id'];
 
-    $sql = "select * from tb_agendamentos where dt_inicio > now() and id_quarto = " .$id;
+    $sql = "select * from tb_agendamentos where DATEDIFF(dt_inicio, now()) >= 0 and id_quarto = " .$id;
     
     $result = mysqli_query($link, $sql);
+
 
 
     while($row = mysqli_fetch_array($result)){
@@ -432,7 +425,7 @@ div.datepicker {
 
 
                                     <div class="u-form-group u-form-submit" id="btns">
-                                        <a href="http://localhost/vht/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
+                                        <a href="/VHT/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
                                         <input type="button" value="submit" class="u-form-control-hidden">
 
                                         <a <?php if($row[3] == 'Disponível'){echo 'data-toggle="modal" data-target="#modalCriacao"';} ?> class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1" style="width: 200px;<?php if($row[3] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row[3] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
@@ -681,7 +674,8 @@ function highlightBetweenDates() {
     if(dateFrom == null || dateTo == null ){ 
         $(".ui-datepicker-calendar td").mouseover(function() {
             if(dateFrom != null && !$(this).hasClass('ui-datepicker-unselectable')){
-                currentDate = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).children().text() + '/' + (parseInt($(this).attr('data-month'))+1) + '/' + parseInt($(this).attr('data-year')));
+                console.log($(this).children().text() + '/' + (parseInt($(this).attr('data-month'))+1) + '/' + parseInt($(this).attr('data-year')));
+                currentDate = $.datepicker.parseDate($.datepicker._defaults.dateFormat, (parseInt($(this).attr('data-month'))+1) + '/' + $(this).children().text() + '/' + parseInt($(this).attr('data-year')));
                 if(currentDate != selectedDate){
                     if (selectedDate === null) {
                         selectedDate = new Date();

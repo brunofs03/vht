@@ -516,7 +516,7 @@ body{
             }, 2100);
 
             setTimeout(function () {
-            	window.location.href = 'http://localhost/VHT/telaLogin.php';
+            	window.location.href = '/VHT/telaLogin.php';
             }, 2500);
 
     }

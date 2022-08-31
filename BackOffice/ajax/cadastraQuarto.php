@@ -62,7 +62,7 @@ if($idInserido == ''){
 	} else {
 	  $target_file = $target_dir . md5(date('Y-m-d H:i:s:u')).".".$imageFileType;
 	  if (move_uploaded_file($_FILES["ImportImgQuarto"]["tmp_name"], $target_file)) {
-	    $caminhoImagem = "http://localhost/VHT/BackOffice/imagensQuarto/" . $target_file;
+	    $caminhoImagem = "/VHT/BackOffice/imagensQuarto/" . $target_file;
 	  } else {
 	    $mensagemRetorno = "\nMe desculpe, teve um erro ao realizar o upload.";
 	    $caminhoImagem = "";

@@ -45,14 +45,14 @@
             
             while($row = mysqli_fetch_array($result)){
                 echo "<div class='col-sm-4' style='height:350px !important;margin-bottom:25px;margin-top:25px;'>";
-                echo "<div style='cursor:pointer' onclick='window.location.href=`http://localhost/vht/FrontOffice/TelaQuarto.php?id=";
+                echo "<div style='cursor:pointer' onclick='window.location.href=`/VHT/FrontOffice/TelaQuarto.php?id=";
                 echo $row[0];
                 echo "`'> <div style='height: 50px;'><div style='color: black;padding: 10px;width: 100%;font-size: 18px;background-color: rgba(189, 189, 189, 0.8);font-weight:700;vertical-align: middle;width:100%;font-size: 22px;text-align: center;'>Quarto ";
                 echo $row[2];
                 if($row[3] == 'Disponível'){
-                  echo " <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Location_dot_green.svg/1200px-Location_dot_green.svg.png' style='margin-bottom: 5px;margin-left: 8px;height:17px'></div></div>";
+                  echo " <img src='/VHT/FrontOffice/images/Location_dot_green.svg.png' style='margin-bottom: 5px;margin-left: 8px;height:17px'></div></div>";
                   }else{
-                    echo " <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Location_dot_red.svg/1024px-Location_dot_red.svg.png' style='margin-bottom: 5px;margin-left: 8px;height:17px'></div></div>";
+                    echo " <img src='/VHT/FrontOffice/images/1024px-Location_dot_red.svg.png' style='margin-bottom: 5px;margin-left: 8px;height:17px'></div></div>";
                   }; 
                 echo "<div style='height: 250px;overflow:hidden;background-image: url(";
                 echo $row[5];

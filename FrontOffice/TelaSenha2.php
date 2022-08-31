@@ -1,8 +1,4 @@
-<?php 
-
-session_start();
-
-?>
+<?php include "sessionStart.php"?>
 
 
 <?php include "topmenu.php" ?>
@@ -15,32 +11,26 @@ session_start();
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <meta name="keywords"
-    content="Extraordinary Hotels For The Curious Traveller, Inspiration, New Boutique Hotels, Can't Keep Your Eyes Away? Follow Us!, Find Out What Makes Us The Best Hotel, Empire State Building, Follow Us On Instagram">
-  <meta name="description" content="">
-  <meta name="page_type" content="np-template-header-footer-from-plugin">
+
   <title>VHT</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="Content/vendor/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="Content/css/estiloPrincipal.css" media="screen">
-  <link rel="stylesheet" href="Content/css/mainPage.css" media="screen">
-  <script class="u-script" type="text/javascript" src="Content/js/javascriptPrincipal.js" defer=""></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-  <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+  
+  <!--- Importação CSS --->
+  <link rel="stylesheet" type="text/css" href="/VHT/FrontOffice/Content/library/BootstrapFirst.min.css">
+  <link rel="stylesheet" type="text/css" href="/VHT/FrontOffice/Content/library/BootstrapSecond.min.css">
+
+
+  <!--- Importação Fontes --->
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontAwesomeMain.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontFamilyRoboto.css">
+
+  <!--- Importação Javascript --->
+  <script src="/VHT/FrontOffice/Content/library/jquery.min.js"></script>
+  <script src="/VHT/FrontOffice/Content/library/bootstrap.min.js"></script>
+
   <link rel="stylesheet" href="content/css/style.css">
   <link rel="stylesheet" href="content/css/styleSenha.css">
-  
-  <meta property="og:title" content="Página Inicial">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#478ac9">
-
 </head>
 
   <body>
