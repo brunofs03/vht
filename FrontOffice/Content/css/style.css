@@ -26,7 +26,7 @@ h2 {
 
 .half, .half .container > .row {
   height: 100vh;
-  min-height: 700px; }
+  min-height: auto; }
 
 @media (max-width: 991.98px) {
   .half .bg {
