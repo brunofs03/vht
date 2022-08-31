@@ -6,38 +6,32 @@
 
 <html style="font-size: 16px;">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>VHT</title>
-  <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="Content/vendor/perfect-scrollbar/perfect-scrollbar.css">
+
 	<link rel="stylesheet" type="text/css" href="Content/css/util.css">
 	<link rel="stylesheet" type="text/css" href="Content/css/main.css">
-  <link rel="stylesheet" href="Content/css/estiloPrincipal.css" media="screen">
-  <link rel="stylesheet" href="Content/css/mainPage.css" media="screen">
-  <script class="u-script" type="text/javascript" src="Content/js/javascriptPrincipal.js" defer=""></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-  <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-  <meta property="og:title" content="Página Inicial">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#478ac9">
 
-  <style>
-    .u-border-grey-30, .u-separator-grey-30:after {
-        border-color: #b3b3b3 !important;
-        stroke: #b3b3b3 !important;
-        border: 1px solid #b3b3b3 !important;
-    }
+	<link rel="stylesheet" href="Content/css/estiloPrincipal.css" media="screen">
+	<link rel="stylesheet" href="Content/css/mainPage.css" media="screen">
+  
+	<!--- Importação CSS --->
+	<link rel="stylesheet" type="text/css" href="/VHT/FrontOffice/Content/library/BootstrapFirst.min.css">
+	<link rel="stylesheet" type="text/css" href="/VHT/FrontOffice/Content/library/BootstrapSecond.min.css">
+
+
+	<!--- Importação Fontes --->
+	<link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontAwesomeMain.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontFamilyRoboto.css">
+
+	<!--- Importação Javascript --->
+	<script src="/VHT/FrontOffice/Content/library/jquery.min.js"></script>
+	<script src="/VHT/FrontOffice/Content/library/bootstrap.min.js"></script>
+
+	<style>
+	.u-border-grey-30, .u-separator-grey-30:after {
+	    border-color: #b3b3b3 !important;
+	    stroke: #b3b3b3 !important;
+	    border: 1px solid #b3b3b3 !important;
+	}
 
 	td{
 		text-align: center !important;
@@ -50,11 +44,11 @@
 	tbody tr:hover {
 		background-color: #dbdbdb;
 	}
-  </style>
+	</style>
 </head>
 
 
-<body class="u-body">
+<body style="font-family: 'Open Sans',sans-serif;font-size:15px;line-height:1.6">
 
 
 <!-- Incluir o Menu da página -->

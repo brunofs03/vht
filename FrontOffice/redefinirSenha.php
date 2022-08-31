@@ -85,7 +85,7 @@
 				                              <table id="tblDados" style="border-collapse: collapse !important;font-family: Calibri;font-size: 15px;width: 100%;color:#595959">
 				                                 <tr class="columSolicitacao">
 				                                    <td style="font-size: 15px;" colspan="2">
-				                                       Link para redefinir senha: <br><a href="http://localhost/VHT/FrontOffice/AlterarSenhaEmail.php?token=' .$tokenVar .'" target=”_blank”>http://localhost/VHT/FrontOffice/AlterarSenhaEmail.php</a>
+				                                       Link para redefinir senha: <br><a href="/VHT/FrontOffice/AlterarSenhaEmail.php?token=' .$tokenVar .'" target=”_blank”>/VHT/FrontOffice/AlterarSenhaEmail.php</a>
 				                                    </td>
 				                                 </tr>
 				                                 <tr class="columSolicitacao">
@@ -158,7 +158,7 @@
 	                 "Content-type: text/html; charset=iso-8859-1" . "\r\n".
 	                 'MIME-Version: 1.0' . "\r\n";
 
-	    mail($to, $subject, $message, $headers);
+	    var_dump(mail($to, $subject, $message, $headers));
 		$enviadoPergunta = 'Enviado';
 	}
 
