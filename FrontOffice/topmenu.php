@@ -39,22 +39,22 @@
 
   <div class="collapse navbar-collapse" id="navbarPequeno">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" style="border: 1px solid #ddd;background-color:white;">
+      <li class="nav-item active" style="background-color:white;">
       <a class="nav-link" href="mainPage.php">Página Inicial</a>
       </li>
-      <li class="nav-item" style="border: 1px solid #ddd;border: 1px solid #ddd;background-color:white;">
+      <li class="nav-item" style="background-color:white;">
         <a class="nav-link" href="TelaResultadoExplorar.php">Explorar</a>
       </li>
-      <li class="nav-item" style="background-color:white;border: 1px solid #ddd;display: <?php echo (!empty($logado)) ? 'none' : ''; ?>"><a class="nav-link" 
+      <li class="nav-item" style="background-color:white;display: <?php echo (!empty($logado)) ? 'none' : ''; ?>"><a class="nav-link" 
       href="../TelaLogin.php">Fazer Login</a>
       </li>
-      <li class="nav-item" style="background-color:white;border: 1px solid #ddd;display: <?php echo (!empty($logado)) ? '' : 'none'; ?>"><a class="nav-link" 
+      <li class="nav-item" style="background-color:white;display: <?php echo (!empty($logado)) ? '' : 'none'; ?>"><a class="nav-link" 
       href="TelaAgendamentos2.php">Agendamentos</a>
       </li>
-      <li class="nav-item" style="background-color:white;border: 1px solid #ddd;display: <?php echo (!empty($logado)) ? 'none' : ''; ?>"><a class="nav-link"
+      <li class="nav-item" style="background-color:white;display: <?php echo (!empty($logado)) ? 'none' : ''; ?>"><a class="nav-link"
           href="TelaCadastro.php">Cadastrar-se</a>
       </li>
-      <li class="nav-item dropdown" style="background-color:white;border: 1px solid #ddd;display: <?php echo (!empty($logado)) ? '' : 'none'; ?>">
+      <li class="nav-item dropdown" style="background-color:white;display: <?php echo (!empty($logado)) ? '' : 'none'; ?>">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Minha conta
         </a>
