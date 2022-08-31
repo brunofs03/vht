@@ -48,11 +48,10 @@
   }
 
   .innerImage{
-    margin-left: 40%;
+    margin:auto;
     margin-top: 250px;
     width: 250px;
     display: grid;
-    position: absolute;
   }
 
   .textoValorPrincipal{
@@ -72,7 +71,7 @@
 
 <!-- Seção da Imagem com o logo principal -->
 
-  <section class="SectionImagemGrande">
+  <section class="SectionImagemGrande" style="display:flex">
       <div class="innerImage">
         <img src="images/Logo3.png" alt="LogoVHT" style="width:150px;margin-left:40px">
         <img src="images/5Estrelas.png" alt="Estrelas" style="width:200px;margin-left:20px">
@@ -160,7 +159,7 @@
   <section style="background-image: url( /VHT/FrontOffice/images/CasaLago.jpeg);object-fit: cover;display: block;vertical-align: middle;background-size: cover;
     background-position: 50% 50%;background-repeat: no-repeat;">
     <div class="container" style="min-height: 581px;;">
-      <div  style="width: 570px;min-height: 238px;margin: 172px auto;color: #111111;background-color: #f5f7fa;opacity: 0.9;padding:20px">
+      <div  style="max-width: 570px;min-height: 238px;margin: 172px auto;color: #111111;background-color: #f5f7fa;opacity: 0.9;padding:20px">
         <h2 style="text-align:center;font-family: georgia;">Sobre nós</h2>
         <img src="images/FaixaDourada.png" style="width:100%" alt="Faixa Dourada">
         <p style="text-align:center">Não importa se você está procurando um quarto luxuoso para passar o dia, ou um bar requintado para passar a noite, temos algo para você.</p>
@@ -203,7 +202,7 @@
 
   <section style="color: #111111;background-color: #f5f7fa;min-height: 450px;">
    <div class="container">
-      <div style="width: 800px;margin: 40px auto 0;">
+      <div style="margin: 40px auto 0;">
          <h2 style="position: relative;margin: 10px 0;font-family: Georgia, serif !important;text-align:center;">Descubra o que faz de nós o melhor hotel </h2>
       </div>
       <div style="margin-left:0px !important">

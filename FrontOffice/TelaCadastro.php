@@ -142,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     -webkit-box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
     border-radius: 4px;
-    height: 40px;
+    height: 40px !important;
   }
 </style>
 
