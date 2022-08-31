@@ -66,7 +66,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="CriacaoQuarto.php">Criar Quarto</a>
-          <a class="dropdown-item" href="#">Editar Quarto</a>
+          <a class="dropdown-item" href="CockpitQuartos.php">Editar Quarto</a>
         </div>
       </li>
       <li class="nav-item dropdown">

@@ -41,7 +41,7 @@
     require_once "config.php";
 
 
-    $sql = "SELECT * FROM gestao_logins order by data_criacao desc";
+    $sql = "SELECT * FROM quartos order by id_quarto desc";
 
 
     $result = mysqli_query($link, $sql);
@@ -56,13 +56,14 @@
 </style>
 <section style="min-height:500px">
     <div class="container">
-        <h1 align="center"><small><b>Gestão de logins</b></small></h1>
+        <h1 align="center"><small><b>Edição de quartos</b></small></h1>
         <table class="table">
             <thead class="table table-bordered" style="background-color:#292d33; color:white;">
                 <tr>
-                    <th style="text-align:center !important">Email</th>
-                    <th style="text-align:center !important">Tipo</th>
-                    <th style="text-align:center !important">Data e hora</th>
+                    <th style="text-align:center !important">Número</th>
+                    <th style="text-align:center !important">Preço base</th>
+                    <th style="text-align:center !important">Classificação</th>
+                    <th style="text-align:center !important">Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,15 +73,23 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<td align='center'>";
-                echo $row[2];
+                echo $row['num_quarto'];
                 echo "</td>";
                 echo "<td align='center'>";
-                echo $row[3];
+                echo $row['preco_diaria'];
                 echo "</td>";
                 echo "<td align='center'>";
-                $date = date_create($row[4]);
-                echo date_format($date,"d/m/Y H:i:s");
+                if($row['estrelas'] == 1){
+                    echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
+                }else if($row['estrelas'] == 2){
+                    echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
+                }else if($row['estrelas'] ==3){
+                    echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
+                }
                 echo "</td>";
+                echo "<td align='center'><i class='fas fa-edit' style='font-size:20px;cursor:pointer' onclick='editaQuarto(";
+                echo $row['id_quarto'];
+                echo ")'</i></td>";
                 echo "</tr>";
             }
             ?>
@@ -92,7 +101,11 @@
 <?php include "footer.php" ?>
   
 
-
+<script>
+  function editaQuarto(id){
+    window.location.href = 'editaQuarto.php?id=' + id
+  }
+</script>
 
 </body>
 
