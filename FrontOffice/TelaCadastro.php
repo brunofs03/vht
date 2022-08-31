@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: ../TelaLogin.php");
+                header("location: ../TelaLogin.php?success=1");
             } else{
                 echo "Oops! Algo deu errado, tente novamente..";
             }
@@ -137,6 +137,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     background-color: black !important;
     border-color: black !important;
   }
+
+  .half .contents .form-control, .half .bg .form-control {
+    -webkit-box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+    border-radius: 4px;
+    height: 40px;
+  }
 </style>
 
 <head>
@@ -161,7 +168,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 
 
-  <div class="d-lg-flex half">
+  <div class="d-lg-flex half" style="height:100%;min-height:auto">
     <div class="bg order-1 order-md-2" style="background-image: url('images/BanheiroGrande.jpg');"></div>
     <div class="contents order-2 order-md-1">
 

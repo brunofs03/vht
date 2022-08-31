@@ -117,7 +117,7 @@
 <!-- Seção das informações da tabela -->
 <div style="background-color:#dbdbdb;">
   <section>
-    <div class="container" style="background-color:#e6e6e6;height: 100%;max-width: 100%;">
+    <div class="container" style="background-color:#e6e6e6;min-height:200px;height: 100%;max-width: 100%;">
         <div class="row" id="retornoFiltro">
 
 
