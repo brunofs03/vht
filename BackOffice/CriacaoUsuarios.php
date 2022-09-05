@@ -7,7 +7,7 @@
 require_once "config.php";
  
 // Define as variaveis com valores vazios
-$username = $password = $confirm_password = $first_name = $firstname_err = $last_name = $lastname_err = "";
+$username = $password = $confirm_password = $first_name = $firstname_err = "";
 $username_err = $password_err = $confirm_password_err = "";
  
 // Processar informação do form quando for submitado
@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $username_err = "Por favor, insira um E-mail válido.";
     }else{
         // Prepara o sql de select
-        $sql12 = "SELECT id FROM users WHERE username = ?";
+        $sql12 = "SELECT id_func FROM user_funcionario WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql12)){
             // Criar os parametros e adiciona elas ao sql
@@ -56,30 +56,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
           $first_name = trim($_POST["first_name"]);
     }
+   
 
-      
-        
-      
-    if(empty(trim($_POST["last_name"]))){
-      $lastname_err = "O sobrenome não pode ser vazio.";     
+    if(empty(trim($_POST["phone"]))){
+      $phone_err = "O telefone não pode ser vazio.";     
     }else{
-          $last_name = trim($_POST["last_name"]);
+          $phone = trim($_POST["phone"]);
     }
+   
+
+    if(empty(trim($_POST["new_password"]))){
+      $password_err = "A senha não pode ser vazia.";
+    }else{
+        $password = trim($_POST["new_password"]);
+
+    	if(empty(trim($_POST["confirm_password"]))){
+	      $confirm_password_err = "Por favor confirme a senha.";
+	    }else{
+	          $confirm_password = trim($_POST["confirm_password"]);
+
+	          if($password != $confirm_password ){
+	          	$confirm_password_err = "As senhas não são iguais";
+	          }
+	    }
+    }
+   
+
+    
+
     
     // Checa pra ver se tem algum erro
-    if(empty($username_err) && empty($firstname_err) && empty($lastname_err) ){
+    if(empty($username_err) && empty($firstname_err)){
         
       // Prepara o sql de update
-      $sql = "update users set username = ?, first_name = ?, last_name = ? where id = " .$_SESSION["id"];
+      $sql = "insert into user_funcionario(nome,email,telefone,senha,data_criacao)values(?,?,?,?,now())";
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
-          mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_first_name, $param_last_name);
+          mysqli_stmt_bind_param($stmt, "ssss", $param_first_name, $param_username, $param_phone, $param_senha);
           
           // Adiciona os valores aos parametros
           $param_username = $username;
           $param_first_name = $first_name;
-          $param_last_name = $last_name;
+          $param_phone = $phone;
+          $param_senha = password_hash($password, PASSWORD_DEFAULT);
           
           // Tenta executar o sql
           if(mysqli_stmt_execute($stmt)){
@@ -93,139 +113,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           mysqli_stmt_close($stmt);
       }
     }
-  }else if(trim($_POST["hdnSalvar"]) == '2'){
-
-    if(empty(trim($_POST["new_password"]))){
-        $password_err = "Por favor, preencha a senha.";     
-    } elseif(strlen(trim($_POST["new_password"])) < 6){
-        $password_err = "A senha precisa ter pelo menos 6 caracteres.";
-    } else{
-        $password = trim($_POST["new_password"]);
-    }
-
-    if(empty(trim($_POST["confirm_password"]))){
-      $confirm_password_err = "Por favor, confirme a senha.";     
-    } else{
-        $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "As senhas são diferentes.";
-        }
-    }
-
-    if(empty($confirm_password_err) && empty($password_err)){
-        
-      // Prepara o sql de update
-      $sql = "update users set password = ? where id = " .$_SESSION["id"];
-         
-      if($stmt = mysqli_prepare($link, $sql)){
-          // Criar os parametros e adiciona elas ao sql
-          mysqli_stmt_bind_param($stmt, "s", $param_password);
-          
-          // Adiciona os valores aos parametros
-            $param_password = password_hash($password, PASSWORD_DEFAULT);
-
-
-          // Tenta executar o sql
-          if(mysqli_stmt_execute($stmt)){
-              // Começa a animação de salvar
-              echo "<script>window.onload = function() {checkmark();}</script>";
-          } else{
-              echo "Oops! Algo deu errado, tente novamente..";
-          }
-
-          // Fecha a variável de sql
-          mysqli_stmt_close($stmt);
-      }
-    }
-
-  }else if(trim($_POST["hdnSalvar"]) == '3'){
-
-
-
-
-
-    if(empty(trim($_POST["email_apagar"]))){
-      $username_err = "Por favor, preencha o usuário.";
-  } else{
-      $username = trim($_POST["email_apagar"]);
-  }
-  
-  // Check if password is empty
-  if(empty(trim($_POST["senha_apagar"]))){
-      $password_err = "Por favor, preencha a senha.";
-  } else{
-      $password = trim($_POST["senha_apagar"]);
-  }
-  
-  // Validate credentials
-  if(empty($username_err) && empty($password_err)){
-      // Prepare a select statement
-      $sql = "SELECT id, username, password FROM users WHERE username = ?";
-      
-      if($stmt = mysqli_prepare($link, $sql)){
-          // Bind variables to the prepared statement as parameters
-          mysqli_stmt_bind_param($stmt, "s", $param_username);
-          
-          // Set parameters
-          $param_username = $username;
-          
-          // Attempt to execute the prepared statement
-          if(mysqli_stmt_execute($stmt)){
-              // Store result
-              mysqli_stmt_store_result($stmt);
-              
-              // Check if username exists, if yes then verify password
-              if(mysqli_stmt_num_rows($stmt) == 1){                    
-                  // Bind result variables
-                  mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                  if(mysqli_stmt_fetch($stmt)){
-                      if(password_verify($password, $hashed_password)){
-                        if($_SESSION["id"] == $id){
-                          $id = $_SESSION["id"];
-                          $sql = "DELETE FROM users WHERE id = " .$id;
-                          $stmt = mysqli_prepare($link, $sql);
-                          mysqli_stmt_execute($stmt);
-                          
-                          header("location: TelaLogin.php");
-                        }else{
-                            $login_err = "Nome de usuário ou senha inválido.";
-                        }
-                      } else{
-                          $login_err = "Nome de usuário ou senha inválido.";
-                      }
-                  }
-              } else{
-                  // Username doesn't exist, display a generic error message
-                  $login_err = "Nome de usuário ou senha inválido.";
-              }
-          } else{
-              echo "Ops, algo deu errado, tente novamente ou volte depois!";
-          }
-
-          // Close statement
-          mysqli_stmt_close($stmt);
-      }
-  }
-
-
-
 
 
   }
 }
-?>
-
-<?php 
-    require_once "config.php";
-
-    if(!empty($logado)){
-    $id = $_SESSION["id"];
-    $sql = "SELECT  * FROM  users where id = " .$id;
-    
-    $result = mysqli_query($link, $sql);
-
-    $row = mysqli_fetch_array($result);
-};
 ?>
 
 <!-- Incluir o Menu da página -->
@@ -251,6 +142,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <!--- Importação Javascript --->
   <script src="/VHT/FrontOffice/Content/library/jquery.min.js"></script>
   <script src="/VHT/FrontOffice/Content/library/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
@@ -262,6 +156,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <?php include "topmenu.php" ?>
+
 
 <style>
     #preloader2  {
@@ -487,70 +382,59 @@ body{
 
 </div>
 <br>
-<br>
   <section>
     <div class="container" style="background-color:#e6e6e6;font-size:30px">
-    <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-24.jpg" style="height: 40px;float: left;margin-right: 11px;margin-top: 10px;"><h3>Meu Perfil</h3>
+    <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-24.jpg" style="height: 40px;float: left;margin-right: 11px;margin-top: 10px;"><h3>Cadastro de usuário</h3>
     </div>
     <div class="container" style="background-color:#f5f5f5;">
             <?php 
             if(!empty($login_err)){
                 echo '<br><div class="alert alert-danger">' . $login_err . '</div>';
             }        
+
             ?>
         <div class="row">
             <div class="col-sm-3">
-                <h4>Meus dados</h4>
-                <h5>Dados do seu perfil</h5>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-6">
+                <br>
                 <br>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
                         <label for="first_name" style="font-size: 14px;">Nome:</label>
                     </div>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="first_name" name="first_name" value="<?php if(!empty($logado)){echo($row["first_name"]);};?>">
+                         <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="first_name" name="first_name">
                         <div class="invalid-feedback"><?php echo $firstname_err; ?></div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:7px">
-                    <div class="col-sm-2">
-                        <label for="last_name" style="font-size: 14px;">Sobrenome:</label>
-                    </div>
-                    <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" id="last_name" name="last_name" value="<?php if(!empty($logado)){echo($row["last_name"]);};?>">
-                        <div class="invalid-feedback"><?php echo $lastname_err; ?></div>
                     </div>
                 </div>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
                         <label for="username" style="font-size: 14px;">E-mail:</label>
                     </div>
-                    <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?php if(!empty($logado)){echo($row["username"]);};?>">
+                    <div class="col-sm-10">	
+                         <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="username" name="username">
                         <div class="invalid-feedback"><?php echo $username_err; ?></div>
                     </div>
                 </div>
                 <div class="row" style="margin-top:7px">
-                    <div class="col-sm-3 col-sm-offset-9">
-                         <input type="button" class="btn" value="Salvar" id="btnAlterar" style="width: 100%;padding: 10px 20px;color: white;background-color: #2e2e2e;border-radius: 5px;-webkit-user-select: none;" onclick="salvarDados();">
+                    <div class="col-sm-2">
+                        <label for="phone" style="font-size: 14px;">Telefone:</label>
+                    </div>
+                    <div class="col-sm-10">	
+                         <input type="text" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" id="phone" name="phone">
+                        <div class="invalid-feedback"><?php echo $phone_err; ?></div>
                     </div>
                 </div>
-            </div>
-        </div>  
-        <br><br>
-        <div class="row">
-            <div class="col-sm-3">
-                <h4>Acesso</h4>
-                <h5>Altere sua senha regularmente.</h5>
-                <h5>Ela deve conter pelo menos 6 caracteres.</h5>
-            </div>
-            <div class="col-sm-9">
-                <br>
+
+				<script>
+				   $(document).ready(function (){
+						$("#phone").mask("(99) 99999-9999");			 
+					});
+				</script>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
-                        <label for="new_password" style="font-size: 14px;">Nova Senha:</label>
+                        <label for="new_password" style="font-size: 14px;">Senha:</label>
                     </div>
                     <div class="col-sm-10">
                          <input type="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="new_password" name="new_password" readonly onfocus="this.removeAttribute('readonly');" style="background-color: #fff;"/>
@@ -559,72 +443,30 @@ body{
                 </div>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
-                        <label for="confirm_password" style="font-size: 14px;">Confirme sua Nova Senha:</label>
+                        <label for="confirm_password" style="font-size: 14px;">Confirmar senha:</label>
                     </div>
                     <div class="col-sm-10">
                          <input type="password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" id="confirm_password" name="confirm_password" readonly onfocus="this.removeAttribute('readonly');" style="background-color: #fff;"/>
                          <div class="invalid-feedback"><?php echo $confirm_password_err; ?></div>
                     </div>
                 </div>
+
                 <div class="row" style="margin-top:7px">
-                    <div class="col-sm-3 col-sm-offset-6">
-                         <input type="button" class="btn" value="Apagar Conta" id="btnAlterar" style="background-color: #cc2929;" data-toggle="modal" data-target="#modalApagar">
-                    </div>
-                    <div class="col-sm-3">
-                         <input type="button" class="btn" value="Alterar Senha" id="btnAlterar" onclick="mudarSenha();">
+                    <div class="col-sm-3 col-sm-offset-9">
+                         <input type="button" class="btn" value="Salvar" id="btnAlterar" style="width: 100%;padding: 10px 20px;color: white;background-color: #2e2e2e;border-radius: 5px;-webkit-user-select: none;" onclick="salvarDados();">
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>  
         <br>
         <br>
-    </div>
-    
-    <div class="modal fade" id="modalApagar" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document" style="margin-top: 15%;">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div style="font-size: 18px;">
-                <h1 style="font-size: 2rem;text-align: center;">Apagar Conta</h1>
-                Você tem certeza que quer apagar sua conta?<br>
-                Você perderá os dados para sempre (Muito tempo!)
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white">Fechar</button>
-            <button type="button" class="btn btn-primary" id="btnAlterar" style="padding: 6px 12px;width:20%" onclick="$('#modalApagar').modal('hide');$('#modalConfirmar').modal('show');">Confirmar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="modal fade" id="modalConfirmar" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document" style="margin-top: 15%;">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div style="font-size: 18px;">
-                <h1 style="font-size: 2rem;text-align: center;">Confirmar Dados</h1>
-                Por favor, confirme seu login abaixo.
-
-                <br><br>
-
-                <label for="email_apagar">E-mail</label>
-                  <input type="text" class="form-control" id="email_apagar" name="email_apagar"><br>
-                <label for="senha_apagar">Senha</label>
-                  <input type="password" class="form-control" id="senha_apagar" name="senha_apagar"><br>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white">Fechar</button>
-            <button type="button" class="btn btn-primary" id="btnAlterar" style="padding: 6px 12px;width:30%;background-color: #cc2929;border-color: #cc2929" onclick="deleteAccount()">Apagar Conta</button>
-          </div>
-        </div>
-      </div>
     </div>
 
 
 
         </section>
+      <br>
+      <br>
       <br>
       <br>
     </div>
@@ -656,7 +498,7 @@ body{
             $(".check").attr("class", "check check-complete success");
             $(".fill").attr("class", "fill fill-complete success");
             $(".path").attr("class", "path path-complete");
-            document.getElementById('status_text').innerText = "Salvo!"
+            document.getElementById('status_text').innerText = "Usuário criado com sucesso!"
             }, 2100);
 
             jQuery("#preloader2").delay(2500).fadeOut();
