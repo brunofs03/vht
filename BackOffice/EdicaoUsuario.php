@@ -7,7 +7,7 @@
 require_once "config.php";
  
 // Define as variaveis com valores vazios
-$username = $password = $confirm_password = $first_name = $firstname_err = $last_name = $lastname_err = "";
+$username = $password = $confirm_password = $first_name = $firstname_err = "";
 $username_err = $password_err = $confirm_password_err = "";
  
 // Processar informação do form quando for submitado
@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $username_err = "Por favor, insira um E-mail válido.";
     }else{
         // Prepara o sql de select
-        $sql12 = "SELECT id FROM users WHERE username = ?";
+        $sql12 = "SELECT id_func FROM user_funcionario WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql12)){
             // Criar os parametros e adiciona elas ao sql
@@ -56,30 +56,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }else{
           $first_name = trim($_POST["first_name"]);
     }
+   
 
-      
-        
-      
-    if(empty(trim($_POST["last_name"]))){
-      $lastname_err = "O sobrenome não pode ser vazio.";     
+    if(empty(trim($_POST["phone"]))){
+      $phone_err = "O telefone não pode ser vazio.";     
     }else{
-          $last_name = trim($_POST["last_name"]);
+          $phone = trim($_POST["phone"]);
     }
+
     
     // Checa pra ver se tem algum erro
-    if(empty($username_err) && empty($firstname_err) && empty($lastname_err) ){
+    if(empty($username_err) && empty($firstname_err)){
         
       // Prepara o sql de update
-      $sql = "update users set username = ?, first_name = ?, last_name = ? where id = " .$_SESSION["id"];
+      $sql = "update user_funcionario set email = ?, nome = ?, telefone = ? where id_func = " .$_GET["id"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
-          mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_first_name, $param_last_name);
+          mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_first_name, $param_phone);
           
           // Adiciona os valores aos parametros
           $param_username = $username;
           $param_first_name = $first_name;
-          $param_last_name = $last_name;
+          $param_phone = $phone;
           
           // Tenta executar o sql
           if(mysqli_stmt_execute($stmt)){
@@ -115,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($confirm_password_err) && empty($password_err)){
         
       // Prepara o sql de update
-      $sql = "update users set password = ? where id = " .$_SESSION["id"];
+      $sql = "update user_funcionario set senha = ? where id_func = " .$_GET["id"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
@@ -160,7 +159,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Validate credentials
   if(empty($username_err) && empty($password_err)){
       // Prepare a select statement
-      $sql = "SELECT id, username, password FROM users WHERE username = ?";
+      $sql = "SELECT id_func, email, senha FROM user_funcionario WHERE email = ?";
       
       if($stmt = mysqli_prepare($link, $sql)){
           // Bind variables to the prepared statement as parameters
@@ -180,13 +179,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
                   if(mysqli_stmt_fetch($stmt)){
                       if(password_verify($password, $hashed_password)){
-                        if($_SESSION["id"] == $id){
-                          $id = $_SESSION["id"];
-                          $sql = "DELETE FROM users WHERE id = " .$id;
+                        if($_GET["id"] == $id){
+                          $id = $_GET["id"];
+                          $sql = "DELETE FROM user_funcionario WHERE id_func = " .$id;
                           $stmt = mysqli_prepare($link, $sql);
                           mysqli_stmt_execute($stmt);
                           
-                          header("location: TelaLogin.php");
+                          header("location: mainPage.php");
                         }else{
                             $login_err = "Nome de usuário ou senha inválido.";
                         }
@@ -215,19 +214,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<?php 
-    require_once "config.php";
-
-    if(!empty($logado)){
-    $id = $_SESSION["id"];
-    $sql = "SELECT  * FROM  users where id = " .$id;
-    
-    $result = mysqli_query($link, $sql);
-
-    $row = mysqli_fetch_array($result);
-};
-?>
-
 <!-- Incluir o Menu da página -->
 
 
@@ -251,6 +237,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <!--- Importação Javascript --->
   <script src="/VHT/FrontOffice/Content/library/jquery.min.js"></script>
   <script src="/VHT/FrontOffice/Content/library/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
@@ -262,6 +251,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <?php include "topmenu.php" ?>
+
+<?php 
+    require_once "config.php";
+
+    $id = $_GET["id"];
+    $sql = "SELECT  * FROM  user_funcionario where id_func = " .$id;
+    
+    $result = mysqli_query($link, $sql);
+
+    $row = mysqli_fetch_array($result);
+
+?>
 
 <style>
     #preloader2  {
@@ -487,21 +488,21 @@ body{
 
 </div>
 <br>
-<br>
   <section>
     <div class="container" style="background-color:#e6e6e6;font-size:30px">
-    <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-24.jpg" style="height: 40px;float: left;margin-right: 11px;margin-top: 10px;"><h3>Meu Perfil</h3>
+    <img src="https://icon-library.com/images/white-profile-icon/white-profile-icon-24.jpg" style="height: 40px;float: left;margin-right: 11px;margin-top: 10px;"><h3>Edição de usuário</h3>
     </div>
     <div class="container" style="background-color:#f5f5f5;">
             <?php 
             if(!empty($login_err)){
                 echo '<br><div class="alert alert-danger">' . $login_err . '</div>';
             }        
+
             ?>
         <div class="row">
             <div class="col-sm-3">
-                <h4>Meus dados</h4>
-                <h5>Dados do seu perfil</h5>
+                <h4>Dados pessoais</h4>
+                <h5>Informações do usuário</h5>
             </div>
             <div class="col-sm-9">
                 <br>
@@ -510,28 +511,35 @@ body{
                         <label for="first_name" style="font-size: 14px;">Nome:</label>
                     </div>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="first_name" name="first_name" value="<?php if(!empty($logado)){echo($row["first_name"]);};?>">
+                         <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="first_name" name="first_name" value="<?php if(!empty($row)){echo($row["nome"]);};?>">
                         <div class="invalid-feedback"><?php echo $firstname_err; ?></div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:7px">
-                    <div class="col-sm-2">
-                        <label for="last_name" style="font-size: 14px;">Sobrenome:</label>
-                    </div>
-                    <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" id="last_name" name="last_name" value="<?php if(!empty($logado)){echo($row["last_name"]);};?>">
-                        <div class="invalid-feedback"><?php echo $lastname_err; ?></div>
                     </div>
                 </div>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
                         <label for="username" style="font-size: 14px;">E-mail:</label>
                     </div>
-                    <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?php if(!empty($logado)){echo($row["username"]);};?>">
+                    <div class="col-sm-10">	
+                         <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?php if(!empty($row)){echo($row["email"]);};?>">
                         <div class="invalid-feedback"><?php echo $username_err; ?></div>
                     </div>
                 </div>
+                <div class="row" style="margin-top:7px">
+                    <div class="col-sm-2">
+                        <label for="phone" style="font-size: 14px;">Telefone:</label>
+                    </div>
+                    <div class="col-sm-10">	
+                         <input type="text" class="form-control <?php echo (!empty($phone_err)) ? 'is-invalid' : ''; ?>" id="phone" name="phone" value="<?php if(!empty($row)){echo($row["telefone"]);};?>">
+                        <div class="invalid-feedback"><?php echo $phone_err; ?></div>
+                    </div>
+                </div>
+
+				<script>
+				   $(document).ready(function (){
+						$("#phone").mask("(99) 99999-9999");			 
+					});
+				</script>
+
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-3 col-sm-offset-9">
                          <input type="button" class="btn" value="Salvar" id="btnAlterar" style="width: 100%;padding: 10px 20px;color: white;background-color: #2e2e2e;border-radius: 5px;-webkit-user-select: none;" onclick="salvarDados();">
@@ -543,8 +551,7 @@ body{
         <div class="row">
             <div class="col-sm-3">
                 <h4>Acesso</h4>
-                <h5>Altere sua senha regularmente.</h5>
-                <h5>Ela deve conter pelo menos 6 caracteres.</h5>
+                <h5>A senha deve conter pelo menos 6 caracteres.</h5>
             </div>
             <div class="col-sm-9">
                 <br>

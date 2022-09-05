@@ -6,10 +6,6 @@
 
 <html style="font-size: 16px;">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>VHT</title>
   <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,9 +30,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   
-  <meta property="og:title" content="Página Inicial">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#478ac9">
 
   <style>
     .anychart-credits{

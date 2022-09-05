@@ -19,6 +19,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+  
 </head>
 
 
@@ -33,7 +34,7 @@
     require_once "config.php";
 
 
-    $sql = "SELECT * FROM quartos order by id_quarto desc";
+    $sql = "SELECT * FROM user_funcionario order by id_func desc";
 
 
     $result = mysqli_query($link, $sql);
@@ -48,13 +49,15 @@
 </style>
 <section style="min-height:500px">
     <div class="container">
-        <h1 align="center"><small><b>Edição de quartos</b></small></h1>
+        <h1 align="center"><small><b>Edição de usuários</b></small></h1>
         <table class="table">
             <thead class="table table-bordered" style="background-color:#292d33; color:white;">
                 <tr>
-                    <th style="text-align:center !important">Número</th>
-                    <th style="text-align:center !important">Preço base</th>
-                    <th style="text-align:center !important">Classificação</th>
+                    <th style="text-align:center !important">Id</th>
+                    <th style="text-align:center !important">Nome</th>
+                    <th style="text-align:center !important">E-mail</th>
+                    <th style="text-align:center !important">Telefone</th>
+                    <th style="text-align:center !important">Data de criação</th>
                     <th style="text-align:center !important">Editar</th>
                 </tr>
             </thead>
@@ -65,22 +68,23 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<td align='center'>";
-                echo $row['num_quarto'];
+                echo $row['id_func'];
                 echo "</td>";
                 echo "<td align='center'>";
-                echo $row['preco_diaria'];
+                echo $row['nome'];
                 echo "</td>";
                 echo "<td align='center'>";
-                if($row['estrelas'] == 1){
-                    echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
-                }else if($row['estrelas'] == 2){
-                    echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
-                }else if($row['estrelas'] ==3){
-                    echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
-                }
+                echo $row['email'];
                 echo "</td>";
-                echo "<td align='center'><i class='fas fa-edit' style='font-size:20px;cursor:pointer' onclick='editaQuarto(";
-                echo $row['id_quarto'];
+                echo "<td align='center'>";
+                echo $row['telefone'];
+                echo "</td>";
+                echo "<td align='center'>";
+                $date=date_create($row['data_criacao']);
+				echo date_format($date,"d/m/Y");
+                echo "</td>";
+                echo "<td align='center'><i class='fas fa-edit' style='font-size:20px;cursor:pointer' onclick='editaUser(";
+                echo $row['id_func'];
                 echo ")'</i></td>";
                 echo "</tr>";
             }
@@ -94,8 +98,8 @@
   
 
 <script>
-  function editaQuarto(id){
-    window.location.href = 'editaQuarto.php?id=' + id
+  function editaUser(id){
+    window.location.href = 'EdicaoUsuario.php?id=' + id
   }
 </script>
 

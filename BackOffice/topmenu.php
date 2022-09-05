@@ -74,8 +74,8 @@
         Administrador
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Criar usuário</a>
-          <a class="dropdown-item" href="#">Editar usuário</a>
+          <a class="dropdown-item" href="CriacaoUsuarios.php">Criar usuário</a>
+          <a class="dropdown-item" href="CockpitUsuarios.php">Editar usuário</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="GestaoDeLogins.php">Cockpit de logins</a>
         </div>
