@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $username_err = "Por favor, insira um E-mail válido.";
     }else{
         // Prepara o sql de select
-        $sql12 = "SELECT id FROM users WHERE username = ?";
+        $sql12 = "SELECT id FROM usuarios WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql12)){
             // Criar os parametros e adiciona elas ao sql
@@ -70,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($firstname_err) && empty($lastname_err) ){
         
       // Prepara o sql de update
-      $sql = "update users set username = ?, first_name = ?, last_name = ? where id = " .$_SESSION["id"];
+      $sql = "update usuarios set email = ?, nome = ?, sobrenome = ? where id = " .$_SESSION["id"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($confirm_password_err) && empty($password_err)){
         
       // Prepara o sql de update
-      $sql = "update users set password = ? where id = " .$_SESSION["id"];
+      $sql = "update usuarios set senha = ? where id = " .$_SESSION["id"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
@@ -160,7 +160,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Validate credentials
   if(empty($username_err) && empty($password_err)){
       // Prepare a select statement
-      $sql = "SELECT id, username, password FROM users WHERE username = ?";
+      $sql = "SELECT id, email, senha FROM usuarios WHERE email = ?";
       
       if($stmt = mysqli_prepare($link, $sql)){
           // Bind variables to the prepared statement as parameters
@@ -182,7 +182,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       if(password_verify($password, $hashed_password)){
                         if($_SESSION["id"] == $id){
                           $id = $_SESSION["id"];
-                          $sql = "DELETE FROM users WHERE id = " .$id;
+                          $sql = "DELETE FROM usuarios WHERE id = " .$id;
                           $stmt = mysqli_prepare($link, $sql);
                           mysqli_stmt_execute($stmt);
                           
@@ -220,7 +220,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(!empty($logado)){
     $id = $_SESSION["id"];
-    $sql = "SELECT  * FROM  users where id = " .$id;
+    $sql = "SELECT  * FROM  usuarios where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -510,7 +510,7 @@ body{
                         <label for="first_name" style="font-size: 14px;">Nome:</label>
                     </div>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="first_name" name="first_name" value="<?php if(!empty($logado)){echo($row["first_name"]);};?>">
+                         <input type="text" class="form-control <?php echo (!empty($firstname_err)) ? 'is-invalid' : ''; ?>" id="first_name" name="first_name" value="<?php if(!empty($logado)){echo($row["nome"]);};?>">
                         <div class="invalid-feedback"><?php echo $firstname_err; ?></div>
                     </div>
                 </div>
@@ -519,7 +519,7 @@ body{
                         <label for="last_name" style="font-size: 14px;">Sobrenome:</label>
                     </div>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" id="last_name" name="last_name" value="<?php if(!empty($logado)){echo($row["last_name"]);};?>">
+                         <input type="text" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" id="last_name" name="last_name" value="<?php if(!empty($logado)){echo($row["sobrenome"]);};?>">
                         <div class="invalid-feedback"><?php echo $lastname_err; ?></div>
                     </div>
                 </div>
@@ -528,7 +528,7 @@ body{
                         <label for="username" style="font-size: 14px;">E-mail:</label>
                     </div>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?php if(!empty($logado)){echo($row["username"]);};?>">
+                         <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?php if(!empty($logado)){echo($row["email"]);};?>">
                         <div class="invalid-feedback"><?php echo $username_err; ?></div>
                     </div>
                 </div>

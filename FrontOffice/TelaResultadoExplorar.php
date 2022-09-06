@@ -78,10 +78,10 @@
 
 
     $sqlPrimeiro = "
-    update quartos set disponibilidade = 'Disponível' where id_quarto not in(
-    select quartos.id_quarto from quartos
-    inner join tb_agendamentos on tb_agendamentos.id_quarto = quartos.id_quarto
-    where tb_agendamentos.dt_inicio >= convert(now(),DATE) and dt_fim <= convert(now(),DATE)
+    update quartos set disponibilidade = 'Disponível' where id not in(
+    select quartos.id from quartos
+    inner join agendamentos on agendamentos.id = quartos.id
+    where agendamentos.data_inicio >= convert(now(),DATE) and data_fim <= convert(now(),DATE)
     )";
 
 
@@ -89,10 +89,10 @@
 
 
     $sqlSegundo = "
-    update quartos set disponibilidade = 'Ocupado' where id_quarto in(
-    select quartos.id_quarto from quartos
-    inner join tb_agendamentos on tb_agendamentos.id_quarto = quartos.id_quarto
-    where tb_agendamentos.dt_inicio >= convert(now(),DATE) and dt_fim <= convert(now(),DATE)
+    update quartos set disponibilidade = 'Ocupado' where id in(
+    select quartos.id from quartos
+    inner join agendamentos on agendamentos.id = quartos.id
+    where agendamentos.data_inicio >= convert(now(),DATE) and data_fim <= convert(now(),DATE)
     )";
 
 
@@ -126,30 +126,30 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<div class='col-sm-4' style='height:350px !important;margin-bottom:25px;margin-top:25px;'>";
                 echo "<div style='cursor:pointer' onclick='window.location.href=`/VHT/FrontOffice/TelaQuarto.php?id=";
-                echo $row[0];
+                echo $row['id'];
                 echo "`'> <div style='height: 50px;'><div style='color: black;padding: 10px;width: 100%;font-size: 18px;background-color: rgba(189, 189, 189, 0.8);font-weight:700;vertical-align: middle;width:100%;font-size: 22px;text-align: center;'>Quarto ";
-                echo $row[2];
-                if($row[3] == 'Disponível'){
+                echo $row['num_quarto'];
+                if($row['disponibilidade'] == 'Disponível'){
                   echo " <img src='/VHT/FrontOffice/images/Location_dot_green.svg.png' style='margin-bottom: 5px;margin-left: 8px;height:17px'></div></div>";
                   }else{
                     echo " <img src='/VHT/FrontOffice/images/1024px-Location_dot_red.svg.png' style='margin-bottom: 5px;margin-left: 8px;height:17px'></div></div>";
                   }; 
                 echo "<div style='height: 250px;overflow:hidden;background-image: url(";
-                echo $row[5];
+                echo $row['link'];
                 echo ");background-position: center;background-size: cover;'></div>";
                 echo "<div style='color: black;display:flex;padding: 10px;width: 100%;background-color: rgba(189, 189, 189, 0.8);font-weight:700;vertical-align: middle;width:100%;font-size: 22px;text-align: center;'>";
                 echo "<div style='width:50%;'>";
                 echo "<span style='font-weight:700;vertical-align: middle;font-size: 16px;'>A partir de R$ ";
-                echo number_format($row[1], 2, ',', ' ');
+                echo number_format($row['preco_diaria'], 2, ',', ' ');
                 echo "</span>";
                 echo "</div>";
                 echo "<div style='width:50%;'>";
 
-                if($row[4] == 1){
+                if($row['classificacao'] == 1){
                     echo "<div style='color: white;font-size: 16px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
-                }else if($row[4] == 2){
+                }else if($row['classificacao'] == 2){
                     echo "<div style='color: white;font-size: 16px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
-                }else if($row[4] ==3){
+                }else if($row['classificacao'] ==3){
                     echo "<div style='color: white;font-size: 16px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
                 }
                 echo "</div></div></div></div>";

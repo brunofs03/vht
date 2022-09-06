@@ -10,7 +10,7 @@
     require_once "config.php";
 
     $token = $_GET["token"];
-    $sql = "select * from tb_redefinicao_senha where token = '" .$token ."'";
+    $sql = "select * from log_senha where token = '" .$token ."'";
     
     $result = mysqli_query($link, $sql);
 
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($confirm_password_err) && empty($password_err)){
         
       // Prepara o sql de update
-      $sql = "update users set password = ? where id = " .$row["id_user"];
+      $sql = "update usuarios set senha = ? where id = " .$row["id_usuario"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 	      // Prepara o sql de update
-	      $sql2 = "update tb_redefinicao_senha set status = 1 where id_user = " .$row["id_user"];
+	      $sql2 = "update log_senha set status = 1 where id_usuario = " .$row["id_usuario"];
 
 	      $stmt2 = mysqli_prepare($link, $sql2);
 

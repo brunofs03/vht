@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Valida as credenciais
   if(empty($username_err) && empty($password_err)){
       // Prepara o sql
-      $sql = "SELECT id, username, password FROM users WHERE username = ?";
+      $sql = "SELECT id, email, senha, perfil FROM usuarios WHERE email = ?";
       
       if($stmt = mysqli_prepare($link, $sql)){
           // Atribui os valores a variavel no sql
@@ -54,12 +54,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               // Checa se o nome de usuário existe
               if(mysqli_stmt_num_rows($stmt) == 1){                    
                   // Bind result variables
-                  mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                  mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $perfil);
                   if(mysqli_stmt_fetch($stmt)){
                       if(password_verify($password, $hashed_password)){
                           // A senha está certa, criando o login
 
-                          $sql2 = "INSERT into gestao_logins( id_user, email,tipo, data_criacao )VALUES( ?,? ,?, now() )";
+                          $sql2 = "INSERT into log_usuarios( id_usuario, email, tipo )VALUES( ?, ? ,?)";
       
                             $stmt2 = mysqli_prepare($link, $sql2);
                               // Atribui os valores a variavel no sql
@@ -68,7 +68,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                               // Cria os parametros
                               $param_id = $id;
                               $param_email = $username;
-                              $param_tipo = "Cliente";
+
+
+
+                              if($perfil == 1){
+                                $param_tipo = "Cliente";
+                              }else if($perfil == 2){
+                                $param_tipo = "Funcionário";
+                              }
                               
                               // Tenta executar o sql
                               mysqli_stmt_execute($stmt2);
@@ -87,91 +94,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                           $_SESSION["manter"] = false;
                           }
                           $_SESSION["loggedin"] = true;
-                          $_SESSION["permissao"] = false;
                           $_SESSION["id"] = $id;
                           $_SESSION["username"] = $username;                            
                           
                           // Redireciona o usuário para a página inicial
-                          header("location: FrontOffice/MainPage.php");
+
+                          if($perfil == 1){
+                            $_SESSION["permissao"] = false;
+                            header("location: FrontOffice/MainPage.php");
+                          }else if($perfil == 2){
+                            $_SESSION["permissao"] = true;
+                            header("location: BackOffice/MainPage.php");
+                          }
                       }else{
                         $login_err = "Nome de usuário ou senha inválido.";
                       } 
                    }
-                }elseif(mysqli_stmt_num_rows($stmt) == 0){
 
-                  
-                
-                  $sql = "SELECT id_func, email, senha FROM user_funcionario WHERE email = ?";
-  
-                  if($stmt = mysqli_prepare($link, $sql)){
-                   mysqli_stmt_bind_param($stmt, "s", $param_username);
-  
-                   $param_username = $username;
-                   if(mysqli_stmt_execute($stmt)){
-                    
-                    
-                    mysqli_stmt_store_result($stmt);
-                    
-                    if(mysqli_stmt_num_rows($stmt) == 1){
-                      
-                      mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    
-                      if(mysqli_stmt_fetch($stmt)){
-                        
-                        if(password_verify($password,$hashed_password)){
-                        
-                          $sql2 = "INSERT into gestao_logins( id_user, email,tipo, data_criacao )VALUES( ?,? ,?, now() )";
-      
-                          $stmt2 = mysqli_prepare($link, $sql2);
-                                  // Atribui os valores a variavel no sql
-                                  mysqli_stmt_bind_param($stmt2, "sss", $param_id,$param_email,$param_tipo);
-                                  
-                                  // Cria os parametros
-                                  $param_id = $id;
-                                  $param_email = $username;
-                                  $param_tipo = "Funcionário";
-                                  
-                                  // Tenta executar o sql
-                                  mysqli_stmt_execute($stmt2);
-
-
-                          if(isset($_POST['manterLog'])){
-                            
-                                       ini_set('session.cookie_lifetime', 60 * 60 *24*365);
-                                       ini_set('session.gc-maxlifetime', 60 * 60 * 24 * 365);
-  
-                                   }
-  
-                                   session_start();
-                         
-                                   // guarda os dados em variaveis de sessão
-                                   if(isset($_POST['manterLog'])){
-                                   $_SESSION["manter"] = true;
-                                   }else{
-                                   $_SESSION["manter"] = false;
-                                   }
-                                   $_SESSION["loggedin"] = true;
-                                   $_SESSION["permissao"] = true;
-                                   $_SESSION["id"] = $id;
-                                   $_SESSION["username"] = $username;                            
-                                   
-                                   
-                                   // Redireciona o usuário para a página inicial
-                                   header("location: BackOffice/MainPage.php");
-                              }else{
-                                $login_err = "Nome de usuário ou senha inválido.";
-                              }
-                          }
-                     }
-                   }
-                  }
-                
-                else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Nome de usuário ou senha inválido.";
-                } 
-
-              }
+              }else{
+                $login_err = "Nome de usuário ou senha inválido.";
+              } 
           } else{
               echo "Ops, algo deu errado, tente novamente ou volte depois!";
           }

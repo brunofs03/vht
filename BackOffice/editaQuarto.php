@@ -101,7 +101,7 @@
     require_once "config.php";
 
     $id = $_GET['id'];
-    $sql = "SELECT  * FROM  quartos where id_quarto = " .$id;
+    $sql = "SELECT  * FROM  quartos where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -156,9 +156,9 @@
             <label for="slcEstrelas">Classificação: <span style="color:red">*</span></label>
            <select id="slcEstrelas" name="slcEstrelas" class="form-control">
               <option value="" selected>selecione*</option>
-              <option value="1" <?php if( $row['estrelas'] == '1') {echo 'selected';} ?>>Standard</option>
-              <option value="2" <?php if( $row['estrelas'] == '2') {echo 'selected';} ?>>Master</option>
-              <option value="3" <?php if( $row['estrelas'] == '3') {echo 'selected';} ?>>Deluxe</option>
+              <option value="1" <?php if( $row['classificacao'] == '1') {echo 'selected';} ?>>Standard</option>
+              <option value="2" <?php if( $row['classificacao'] == '2') {echo 'selected';} ?>>Master</option>
+              <option value="3" <?php if( $row['classificacao'] == '3') {echo 'selected';} ?>>Deluxe</option>
             </select>
           </div>
         </div>

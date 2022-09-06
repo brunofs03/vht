@@ -56,7 +56,7 @@
 
     $id = $_GET['id'];
 
-    $sql = "select * from tb_agendamentos where DATEDIFF(dt_inicio, now()) >= 0 and id_quarto = " .$id;
+    $sql = "select * from agendamentos where DATEDIFF(data_inicio, now()) >= 0 and id = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -71,7 +71,7 @@
              (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
              (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
              (select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
-            where selected_date between '" . $row['dt_inicio'] ."' and '" .$row['dt_fim'] ."'
+            where selected_date between '" . $row['data_inicio'] ."' and '" .$row['data_fim'] ."'
         ";
 
     
@@ -342,7 +342,7 @@ div.datepicker {
     require_once "config.php";
 
     $id = $_GET['id'];
-    $sql = "SELECT  * FROM  quartos where id_quarto = " .$id;
+    $sql = "SELECT  * FROM  quartos where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -356,7 +356,7 @@ div.datepicker {
             <div class="u-clearfix u-sheet u-sheet-1" style="min-height: 0px;">
                 <div class="u-align-center-lg u-align-center-md u-align-center-xl u-align-center-xs u-container-style u-group u-opacity u-opacity-90 u-palette-5-light-3 u-group-1" style="width: 482px;min-height: 156px;margin: 15px auto;">
                     <div class="u-container-layout u-valign-middle u-container-layout-1">
-                        <h2 class="u-align-center-sm u-custom-font u-font-georgia u-text u-text-1"  style="font-family: Roboto;font-size: 40px;">Quarto <?php echo $row[2] ?></h2>
+                        <h2 class="u-align-center-sm u-custom-font u-font-georgia u-text u-text-1"  style="font-family: Roboto;font-size: 40px;">Quarto <?php echo $row['num_quarto'] ?></h2>
                         <img src="images/faixaDourada.png" alt="" class="u-image u-image-default u-image-1" data-image-width="680" data-image-height="80">
                     </div>
                 </div>
@@ -368,22 +368,22 @@ div.datepicker {
                         <div class="u-container-layout u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs">
                             <div class="formQuarto" style="border: 0.1em solid #939393;">
                                 <div id="items-wrapper" class="carrosel" style="border-width: 1px;">
-                                        <img class="d-block w-100" src="<?php echo $row[5]; ?>" style="height: 350px;" alt="Imagem do quarto">
+                                        <img class="d-block w-100" src="<?php echo $row['link']; ?>" style="height: 350px;" alt="Imagem do quarto">
                                 </div>
 
                                 <div class="informacoes">
                                     <div  style="border-bottom: 2px solid #cdcdcd;height: 180px;width:100%">
-                                        <h2 style="margin-top: 0 !important;">A partir de R$ <?php echo number_format($row[1], 2, ',', ' '); ?></h2>
+                                        <h2 style="margin-top: 0 !important;">A partir de R$ <?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?></h2>
                                         <div style="margin-bottom: 10px;margin-top:10px;font-size: 20px;">
 
 
                                         <div class="status" style="width:125px">Classificação:</div>
                                         <?php 
-                                            if($row[4] == 1){
+                                            if($row['classificacao'] == 1){
                                                 echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
-                                            }else if($row[4] == 2){
+                                            }else if($row['classificacao'] == 2){
                                                 echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
-                                            }else if($row[4] ==3){
+                                            }else if($row['classificacao'] ==3){
                                                 echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
                                             } ?>
                                         </div>
@@ -393,7 +393,7 @@ div.datepicker {
 
                                         </div>
                                         <div class="<?php 
-                                        if($row[3] == 'Disponível'){
+                                        if($row['disponibilidade'] == 'Disponível'){
                                             echo "livre";
                                         }else{
                                             echo "ocupado";
@@ -402,13 +402,13 @@ div.datepicker {
 
 
                                             ?>">
-                                            <?php echo $row[3]; ?>
+                                            <?php echo $row['disponibilidade']; ?>
                                         </div>
                                     </div>
                                     <br>
                                     <br>
                                     <div style="border-bottom: 2px solid #cdcdcd;height: 151px;">
-                                        <h5 style="width: 417px;"><?php echo $row[6]; ?></h5>
+                                        <h5 style="width: 417px;"><?php echo $row['descricao']; ?></h5>
                                     </div>
                                 </div>
 
@@ -428,7 +428,7 @@ div.datepicker {
                                         <a href="/VHT/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
                                         <input type="button" value="submit" class="u-form-control-hidden">
 
-                                        <a <?php if($row[3] == 'Disponível'){echo 'data-toggle="modal" data-target="#modalCriacao"';} ?> class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1" style="width: 200px;<?php if($row[3] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row[3] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
+                                        <a <?php if($row['disponibilidade'] == 'Disponível'){echo 'data-toggle="modal" data-target="#modalCriacao"';} ?> class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1" style="width: 200px;<?php if($row['disponibilidade'] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row['disponibilidade'] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
                                         <input type="button" value="submit" class="u-form-control-hidden">
 
                                     </div>

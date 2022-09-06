@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $username_err = "Por favor, insira um E-mail válido.";
     }else{
         // Prepara o sql de select
-        $sql12 = "SELECT id_func FROM user_funcionario WHERE email = ?";
+        $sql12 = "SELECT id FROM usuarios WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql12)){
             // Criar os parametros e adiciona elas ao sql
@@ -57,13 +57,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $first_name = trim($_POST["first_name"]);
     }
    
-
-    if(empty(trim($_POST["phone"]))){
-      $phone_err = "O telefone não pode ser vazio.";     
-    }else{
-          $phone = trim($_POST["phone"]);
-    }
    
+    $first_name = trim($_POST["last_name"]);
+   
+    $phone = trim($_POST["phone"]);
 
     if(empty(trim($_POST["new_password"]))){
       $password_err = "A senha não pode ser vazia.";
@@ -89,15 +86,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($firstname_err)){
         
       // Prepara o sql de update
-      $sql = "insert into user_funcionario(nome,email,telefone,senha,data_criacao)values(?,?,?,?,now())";
+      $sql = "insert into usuarios(nome,sobrenome,email,telefone,senha,data_criacao,Perfil)values(?,?,?,?,?,now(),2)";
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
-          mysqli_stmt_bind_param($stmt, "ssss", $param_first_name, $param_username, $param_phone, $param_senha);
+          mysqli_stmt_bind_param($stmt, "sssss", $param_first_name, $param_last_name, $param_username, $param_phone, $param_senha);
           
           // Adiciona os valores aos parametros
           $param_username = $username;
           $param_first_name = $first_name;
+          $param_last_name = $first_name;
           $param_phone = $phone;
           $param_senha = password_hash($password, PASSWORD_DEFAULT);
           
@@ -410,6 +408,15 @@ body{
                 </div>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
+                        <label for="last_name" style="font-size: 14px;">Sobrenome:</label>
+                    </div>
+                    <div class="col-sm-10">
+                         <input type="text" class="form-control <?php echo (!empty($lastname_err)) ? 'is-invalid' : ''; ?>" id="last_name" name="last_name">
+                        <div class="invalid-feedback"><?php echo $lastname_err; ?></div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:7px">
+                    <div class="col-sm-2">
                         <label for="username" style="font-size: 14px;">E-mail:</label>
                     </div>
                     <div class="col-sm-10">	
@@ -427,11 +434,11 @@ body{
                     </div>
                 </div>
 
-				<script>
-				   $(document).ready(function (){
-						$("#phone").mask("(99) 99999-9999");			 
-					});
-				</script>
+        				<script>
+        				   $(document).ready(function (){
+        						$("#phone").mask("(99) 99999-9999");			 
+        					});
+        				</script>
                 <div class="row" style="margin-top:7px">
                     <div class="col-sm-2">
                         <label for="new_password" style="font-size: 14px;">Senha:</label>

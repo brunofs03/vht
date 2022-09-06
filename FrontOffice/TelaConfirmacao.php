@@ -6,7 +6,7 @@
     require_once "config.php";
 
     $id = $_GET['id'];
-    $sql = "SELECT  * FROM  quartos where id_quarto = " .$id;
+    $sql = "SELECT  * FROM  quartos where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -45,10 +45,10 @@
         }
     </style>
 
-   <input type="hidden" name="precoTotal" id="precoTotal" value="<?php echo number_format($row[1], 2, ',', ' '); ?>">
-  <input type="hidden" name="precoPix" id="precoPix" value="<?php echo number_format($row[1] * 0.90, 2, ',', ' '); ?>">
-   <input type="hidden" name="precoTotalCalculado" id="precoTotalCalculado" value="<?php echo number_format($row[1] * (dateDifference($_GET['data_inicial'], $_GET['data_final']) + 1), 2, ',', ' '); ?>">
-  <input type="hidden" name="precoPixCalculado" id="precoPixCalculado" value="<?php echo number_format(($row[1] * 0.90) * (dateDifference($_GET['data_inicial'], $_GET['data_final']) + 1), 2, ',', ' '); ?>">
+   <input type="hidden" name="precoTotal" id="precoTotal" value="<?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?>">
+  <input type="hidden" name="precoPix" id="precoPix" value="<?php echo number_format($row['preco_diaria'] * 0.90, 2, ',', ' '); ?>">
+   <input type="hidden" name="precoTotalCalculado" id="precoTotalCalculado" value="<?php echo number_format($row['preco_diaria'] * (dateDifference($_GET['data_inicial'], $_GET['data_final']) + 1), 2, ',', ' '); ?>">
+  <input type="hidden" name="precoPixCalculado" id="precoPixCalculado" value="<?php echo number_format(($row['preco_diaria'] * 0.90) * (dateDifference($_GET['data_inicial'], $_GET['data_final']) + 1), 2, ',', ' '); ?>">
 
     <div class="container" style="background-color: rgb(255, 255, 255);box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);min-height: 580px;">
         <br>
@@ -91,11 +91,11 @@
                         <tbody>
                             <tr>
                                 <td>Quarto:</td>
-                                <td><?php echo $row[2] ?></td>
+                                <td><?php echo $row['num_quarto'] ?></td>
                             </tr>
                             <tr>
                                 <td>Preço diária:</td>
-                                <td>R$ <span id="precoConfirm"><?php echo number_format($row[1], 2, ',', ' '); ?></span></td>
+                                <td>R$ <span id="precoConfirm"><?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?></span></td>
                             </tr>
                             <tr>
                                 <td>Início da estádia</td>

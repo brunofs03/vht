@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $username_err = "Por favor, insira um E-mail válido.";
     }else{
         // Prepara o sql de select
-        $sql12 = "SELECT id_func FROM user_funcionario WHERE email = ?";
+        $sql12 = "SELECT id FROM usuarios WHERE email = ?";
         
         if($stmt = mysqli_prepare($link, $sql12)){
             // Criar os parametros e adiciona elas ao sql
@@ -57,19 +57,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $first_name = trim($_POST["first_name"]);
     }
    
-
-    if(empty(trim($_POST["phone"]))){
-      $phone_err = "O telefone não pode ser vazio.";     
-    }else{
-          $phone = trim($_POST["phone"]);
-    }
+    $phone = trim($_POST["phone"]);
 
     
     // Checa pra ver se tem algum erro
     if(empty($username_err) && empty($firstname_err)){
         
       // Prepara o sql de update
-      $sql = "update user_funcionario set email = ?, nome = ?, telefone = ? where id_func = " .$_GET["id"];
+      $sql = "update usuarios set email = ?, nome = ?, telefone = ? where id = " .$_GET["id"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
@@ -114,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($confirm_password_err) && empty($password_err)){
         
       // Prepara o sql de update
-      $sql = "update user_funcionario set senha = ? where id_func = " .$_GET["id"];
+      $sql = "update users set senha = ? where id = " .$_GET["id"];
          
       if($stmt = mysqli_prepare($link, $sql)){
           // Criar os parametros e adiciona elas ao sql
@@ -159,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Validate credentials
   if(empty($username_err) && empty($password_err)){
       // Prepare a select statement
-      $sql = "SELECT id_func, email, senha FROM user_funcionario WHERE email = ?";
+      $sql = "SELECT id, email, senha FROM users WHERE email = ?";
       
       if($stmt = mysqli_prepare($link, $sql)){
           // Bind variables to the prepared statement as parameters
@@ -181,7 +176,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       if(password_verify($password, $hashed_password)){
                         if($_GET["id"] == $id){
                           $id = $_GET["id"];
-                          $sql = "DELETE FROM user_funcionario WHERE id_func = " .$id;
+                          $sql = "DELETE FROM users WHERE id = " .$id;
                           $stmt = mysqli_prepare($link, $sql);
                           mysqli_stmt_execute($stmt);
                           
@@ -256,7 +251,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once "config.php";
 
     $id = $_GET["id"];
-    $sql = "SELECT  * FROM  user_funcionario where id_func = " .$id;
+    $sql = "SELECT  * FROM  usuarios where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 

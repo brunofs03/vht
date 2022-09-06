@@ -34,7 +34,7 @@
     require_once "config.php";
 
 
-    $sql = "SELECT * FROM user_funcionario order by id_func desc";
+    $sql = "SELECT * FROM usuarios order by id desc";
 
 
     $result = mysqli_query($link, $sql);
@@ -54,6 +54,7 @@
             <thead class="table table-bordered" style="background-color:#292d33; color:white;">
                 <tr>
                     <th style="text-align:center !important">Id</th>
+                    <th style="text-align:center !important">Perfil</th>
                     <th style="text-align:center !important">Nome</th>
                     <th style="text-align:center !important">E-mail</th>
                     <th style="text-align:center !important">Telefone</th>
@@ -68,7 +69,14 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<td align='center'>";
-                echo $row['id_func'];
+                echo $row['id'];
+                echo "</td>";
+                echo "<td align='center'>";
+                if($row['perfil'] == 1){
+                  echo "Cliente";
+                }else{
+                  echo "Funcionário";
+                };
                 echo "</td>";
                 echo "<td align='center'>";
                 echo $row['nome'];
@@ -84,7 +92,7 @@
 				echo date_format($date,"d/m/Y");
                 echo "</td>";
                 echo "<td align='center'><i class='fas fa-edit' style='font-size:20px;cursor:pointer' onclick='editaUser(";
-                echo $row['id_func'];
+                echo $row['id'];
                 echo ")'</i></td>";
                 echo "</tr>";
             }
