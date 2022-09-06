@@ -77,7 +77,7 @@
     require_once "config.php";
 
     $id = $_SESSION['id'];
-    $sql = "SELECT * FROM `tb_agendamentos` inner join tb_pagamentos on tb_pagamentos.id_agendamento = tb_agendamentos.id inner join quartos on tb_agendamentos.id_quarto = quartos.id_quarto where id_criador = " .$id;
+    $sql = "SELECT * FROM `agendamentos` inner join pagamentos on pagamentos.id_agendamento = agendamentos.id inner join quartos on agendamentos.id_quarto = quartos.id where id_usuario = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -108,10 +108,10 @@
 							<?php while($row = mysqli_fetch_array($result)){
 								echo '<tr>';
 								echo '<td class="column1">';
-								echo date("d/m/Y", strtotime($row['dt_inicio']));
+								echo date("d/m/Y", strtotime($row['data_inicio']));
 								echo '</td>';
 								echo '<td class="column2">';
-								echo date("d/m/Y", strtotime($row['dt_fim']));
+								echo date("d/m/Y", strtotime($row['data_fim']));
 								echo '</td>';
 								echo '<td class="column3">';
 								echo date("d/m/Y", strtotime($row['data_criacao']));

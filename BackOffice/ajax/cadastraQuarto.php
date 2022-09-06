@@ -71,7 +71,7 @@ if($idInserido == ''){
 
 	if ($uploadOk == 1) {
 
-				$sql = "insert into quartos(preco_diaria, num_quarto, disponibilidade, estrelas, link, descricao) values (?, ?, ?, ?, ?, ?);";
+				$sql = "insert into quartos(preco_diaria, num_quarto, disponibilidade, classificacao, link, descricao) values (?, ?, ?, ?, ?, ?);";
 		        $stmt = mysqli_prepare($link, $sql);
 		        
 		        mysqli_stmt_bind_param($stmt, "ssssss", $param_preco, $param_num, $param_disponibilidade, $param_estrelas, $param_link, $param_descricao);

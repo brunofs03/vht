@@ -1,18 +1,4 @@
 
-<?php 
-    require_once "config.php";
-
-    if(!empty($logado)){
-    $id = $_SESSION["id"];
-    $sql = "SELECT  * FROM  users where id = " .$id;
-    
-    $result = mysqli_query($link, $sql);
-
-    $row = mysqli_fetch_array($result);
-
-};
-            
-  ?>
 
 
   <style>

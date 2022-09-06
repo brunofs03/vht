@@ -5,7 +5,7 @@
 
     if(!empty($logado)){
     $id = $_SESSION["id"];
-    $sql = "SELECT  * FROM  user_funcionario where id_func = " .$id;
+    $sql = "SELECT  * FROM  usuarios where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 

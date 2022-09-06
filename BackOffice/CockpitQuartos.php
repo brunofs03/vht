@@ -33,7 +33,7 @@
     require_once "config.php";
 
 
-    $sql = "SELECT * FROM quartos order by id_quarto desc";
+    $sql = "SELECT * FROM quartos order by id desc";
 
 
     $result = mysqli_query($link, $sql);
@@ -71,16 +71,16 @@
                 echo $row['preco_diaria'];
                 echo "</td>";
                 echo "<td align='center'>";
-                if($row['estrelas'] == 1){
+                if($row['classificacao'] == 1){
                     echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
-                }else if($row['estrelas'] == 2){
+                }else if($row['classificacao'] == 2){
                     echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
-                }else if($row['estrelas'] ==3){
+                }else if($row['classificacao'] ==3){
                     echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
                 }
                 echo "</td>";
                 echo "<td align='center'><i class='fas fa-edit' style='font-size:20px;cursor:pointer' onclick='editaQuarto(";
-                echo $row['id_quarto'];
+                echo $row['id'];
                 echo ")'</i></td>";
                 echo "</tr>";
             }

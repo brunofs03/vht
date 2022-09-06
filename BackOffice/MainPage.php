@@ -74,7 +74,7 @@
 <?php 
     require_once "config.php";
 
-    $sql = "SELECT (select count(*) from users) as qtdCliente,(select count(*) from user_funcionario) as qtdFunc";
+    $sql = "SELECT (select count(*) from usuarios where perfil = 1) as qtdCliente,(select count(*) from usuarios where perfil = 2) as qtdFunc";
     
     $result = mysqli_query($link, $sql);
 
@@ -113,18 +113,18 @@ require_once "config.php";
 
   $sql = "
   select 
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '1') as Mes1,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '2') as Mes2,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '3') as Mes3,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '4') as Mes4,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '5') as Mes5,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '6') as Mes6,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '7') as Mes7,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '8') as Mes8,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '9') as Mes9,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '10') as Mes10,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '11') as Mes11,
-  (SELECT count(*) from tb_agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '12') as Mes12";
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '1') as Mes1,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '2') as Mes2,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '3') as Mes3,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '4') as Mes4,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '5') as Mes5,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '6') as Mes6,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '7') as Mes7,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '8') as Mes8,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '9') as Mes9,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '10') as Mes10,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '11') as Mes11,
+  (SELECT count(*) from agendamentos where year(data_criacao) = year(now()) and month(data_criacao) = '12') as Mes12";
     
     $result = mysqli_query($link, $sql);
 

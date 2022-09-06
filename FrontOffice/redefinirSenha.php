@@ -1,7 +1,7 @@
 <?php 
     require_once "config.php";
 
-    $sql = "SELECT  * FROM  users where username = '" .$_POST['email'] ."'";
+    $sql = "SELECT  * FROM  usuarios where email = '" .$_POST['email'] ."'";
     
     $result = mysqli_query($link, $sql);
 
@@ -16,7 +16,7 @@
 		$bytes = random_bytes(20);
 		$tokenVar = bin2hex($bytes);
 
-		$sql = "INSERT INTO tb_redefinicao_senha (id_user, token ,status) VALUES (?, ? ,?)";
+		$sql = "INSERT INTO log_senha (id_usuario, token ,status) VALUES (?, ? ,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
 
@@ -65,7 +65,7 @@
 				                     <tr>
 				                        <td>
 				                           <div style="text-align:justify; text-align:justify;font-size: 15px; font-family:Calibri;">
-				                              <span style="font-size: 15px;font-family:Calibri"><b>Prezado(a) ' .$row['first_name'] .',</b><b></b></span><br>
+				                              <span style="font-size: 15px;font-family:Calibri"><b>Prezado(a) ' .$row['nome'] .',</b><b></b></span><br>
 				                           </div>
 				                           <div style="text-align:justify; text-align:justify; text-align:justify;font-size: 15px; font-family:Calibri;">
 				                              <p style="font-size: 15px;font-family:Calibri">

@@ -9,13 +9,13 @@ session_start();
 require_once "../config.php";
 
 
-$sql = "SELECT * FROM  quartos where id_quarto = " .$_GET['id_quarto'];
+$sql = "SELECT * FROM  quartos where id = " .$_GET['id_quarto'];
 
 $result = mysqli_query($link, $sql);
 
 $row = mysqli_fetch_array($result);
 
-$idInserido = isset($row['id_quarto']) ? $row['id_quarto'] : '';
+$idInserido = isset($row['id']) ? $row['id'] : '';
 
 if($idInserido != ''){
 
@@ -87,7 +87,7 @@ if($idInserido != ''){
 
 	if ($uploadOk == 1) {
 
-				$sql = "update quartos set preco_diaria = ?, num_quarto = ?, disponibilidade = ?, estrelas = ?, descricao = ? where id_quarto = " .$row['id_quarto'];
+				$sql = "update quartos set preco_diaria = ?, num_quarto = ?, disponibilidade = ?, classificacao = ?, descricao = ? where id = " .$row['id'];
 		        $stmt = mysqli_prepare($link, $sql);
 		        
 		        mysqli_stmt_bind_param($stmt, "sssss", $param_preco, $param_num, $param_disponibilidade, $param_estrelas, $param_descricao);

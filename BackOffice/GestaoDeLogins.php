@@ -41,7 +41,7 @@
     require_once "config.php";
 
 
-    $sql = "SELECT * FROM gestao_logins order by data_criacao desc";
+    $sql = "SELECT * FROM log_usuarios order by data_criacao desc";
 
 
     $result = mysqli_query($link, $sql);
@@ -72,13 +72,13 @@
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<td align='center'>";
-                echo $row[2];
+                echo $row['email'];
                 echo "</td>";
                 echo "<td align='center'>";
-                echo $row[3];
+                echo $row['tipo'];
                 echo "</td>";
                 echo "<td align='center'>";
-                $date = date_create($row[4]);
+                $date = date_create($row['data_criacao']);
                 echo date_format($date,"d/m/Y H:i:s");
                 echo "</td>";
                 echo "</tr>";

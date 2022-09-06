@@ -3,7 +3,7 @@
     require_once "config.php";
 
     $id = $_GET['id'];
-    $sql = "SELECT  * FROM  quartos where id_quarto = " .$id;
+    $sql = "SELECT  * FROM  quartos where id = " .$id;
     
     $result = mysqli_query($link, $sql);
 
@@ -31,7 +31,7 @@
       </div>
       <div class="radio-input" style="margin-top: 15px !important;font-weight: 500 !important;">
         <input id="card" value="cartao" type="radio" name="payment" style="float: left;margin-right: 10px;" onclick="changePagamento(1)">
-        Pague R$ <?php echo number_format($row[1], 2, ',', ' '); ?> no cartão
+        Pague R$ <?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?> no cartão
       </div>
     </label>
 
@@ -47,7 +47,7 @@
         <img src="https://logospng.org/download/pix/logo-pix-icone-512.png" style="width:72px"/>
         <div class="radio-input" style="margin-top: 4px;font-weight: 500;">
           <input value="pix" id="pix" type="radio" name="payment" style="float: left;margin-right: 10px;" onclick="changePagamento(2)">
-          Pague <span style="text-decoration: line-through;color: #e61030;">R$ <?php echo number_format($row[1], 2, ',', ' '); ?></span> R$ <?php echo number_format($row[1] * 0.90, 2, ',', ' '); ?> no pix 
+          Pague <span style="text-decoration: line-through;color: #e61030;">R$ <?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?></span> R$ <?php echo number_format($row['preco_diaria'] * 0.90, 2, ',', ' '); ?> no pix 
         </div>
       </label>
   </div>
