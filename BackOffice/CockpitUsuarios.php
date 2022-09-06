@@ -72,7 +72,7 @@
                 echo $row['id'];
                 echo "</td>";
                 echo "<td align='center'>";
-                if($row['perfil'] == 1){
+                if($row['Perfil'] == 1){
                   echo "Cliente";
                 }else{
                   echo "Funcionário";
