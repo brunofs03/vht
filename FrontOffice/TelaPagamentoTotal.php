@@ -96,11 +96,11 @@
     }
     .step2:nth-child(2):before {
       right: -40px;
-      content: 'Pagamento';
+      content: 'Confirmação';
     }
     .step2:nth-child(3):before {
       right: -30px;
-      content: 'Confirmação';
+      content: 'Pagamento';
     }
     .step2:nth-child(4):before {
       right: 0;
@@ -268,11 +268,11 @@
   
   .step2:nth-child(2):before {
       right: -40px;
-      content: 'Pagamento';
+      content: 'Confirmação';
     }
     .step2:nth-child(3):before {
       right: -30px;
-      content: 'Confirmação';
+      content: 'Pagamento';
     }
 
   .progress-bar2{
@@ -299,11 +299,11 @@
   }
     .step2:nth-child(2):before {
       right: -25px;
-      content: 'Pagamento';
+      content: 'Confirmação';
     }
     .step2:nth-child(3):before {
       right: -24px;
-      content: 'Confirmação';
+      content: 'Pagamento';
     }
 
     .progress-bar2{
@@ -340,12 +340,12 @@
                 <?php include "TelaDadosPessoais.php" ?>
             </div>
 
-            <div id="TelaPagamento">
-                <?php include "TelaPagamento2.php" ?>
-            </div>
-
             <div id="TelaConfirmacao">
                 <?php include "TelaConfirmacao.php" ?>
+            </div>
+
+            <div id="TelaPagamento">
+                <?php include "TelaPagamento2.php" ?>
             </div>
             
             <div id="TelaFinalizar">
@@ -413,75 +413,78 @@
           document.getElementById('sobrenomeConfirmar').innerHTML = document.getElementById('txtSobrenome').value;
           document.getElementById('cpfConfirmar').innerHTML = document.getElementById('txtCpf').value;
           document.getElementById('emailConfirmar').innerHTML = document.getElementById('txtEmail').value;
+          document.getElementById('celularConfirmar').innerHTML = document.getElementById('txtCelular').value;
+          
 
 
+          $("[id='telas'] > [id!='TelaConfirmacao']").attr({style: "display:none"});
+          $("[id='telas'] > [id='TelaConfirmacao']").attr({style: "display:block"});
 
-        $("[id='telas'] > [id!='TelaPagamento']").attr({style: "display:none"});
-        $("[id='telas'] > [id='TelaPagamento']").attr({style: "display:block"});
        }
 
 
         } 
      if(numero == "3"){
 
+        $("[id='telas'] > [id!='TelaPagamento']").attr({style: "display:none"});
+        $("[id='telas'] > [id='TelaPagamento']").attr({style: "display:block"});
+        } 
+     if(numero == "4"){
+
+
 
        
       var msg = "";
        
-      if(document.querySelector('input[name="payment"]:checked') == null){
-         msg = msg + "\n - Método de pagamento"
-       }else{
+      // if(document.querySelector('input[name="payment"]:checked') == null){
+      //    msg = msg + "\n - Método de pagamento"
+      //  }else{
 
-          if(document.querySelector('input[name="payment"]:checked').id != 'pix'){
+      //     if(document.querySelector('input[name="payment"]:checked').id != 'pix'){
 
-          if(document.getElementById('cardholder').value == ""){
-            msg = msg + "\n - Nome do titular"
-          }
-          if(document.getElementById('dateVencimento').value == ""){
-            msg = msg + "\n - Data de vencimento"
-          }
-          if(document.getElementById('verification').value == ""){
-            msg = msg + "\n - CVV / CVC"
-          }
-          if(document.getElementById('cardnumber').value == ""){
-            msg = msg + "\n - Número do cartão"
-          }else{
+      //     if(document.getElementById('cardholder').value == ""){
+      //       msg = msg + "\n - Nome do titular"
+      //     }
+      //     if(document.getElementById('dateVencimento').value == ""){
+      //       msg = msg + "\n - Data de vencimento"
+      //     }
+      //     if(document.getElementById('verification').value == ""){
+      //       msg = msg + "\n - CVV / CVC"
+      //     }
+      //     if(document.getElementById('cardnumber').value == ""){
+      //       msg = msg + "\n - Número do cartão"
+      //     }else{
 
-            var cardParts = document.getElementById('cardnumber').value.split(" ")
-            if(cardParts.length != 4){
-            msg = msg + "\n - Número do cartão"
-            }else{
-              document.getElementById('NumeroCartaoCensurado').innerHTML = "**** **** **** " + cardParts[3];
-            }
+      //       var cardParts = document.getElementById('cardnumber').value.split(" ")
+      //       if(cardParts.length != 4){
+      //       msg = msg + "\n - Número do cartão"
+      //       }else{
+      //         document.getElementById('NumeroCartaoCensurado').innerHTML = "**** **** **** " + cardParts[3];
+      //       }
          
-        }
+      //   }
 
-       }else{
+      //  }else{
 
-            if(document.getElementById('PixOwner').value == ""){
-              msg = msg + "\n - Nome do dono do Pix"
-            }
-            if(document.getElementById('CodPix').value == ""){
-              msg = msg + "\n - Código do Pix"
-            }else{
+      //       if(document.getElementById('PixOwner').value == ""){
+      //         msg = msg + "\n - Nome do dono do Pix"
+      //       }
+      //       if(document.getElementById('CodPix').value == ""){
+      //         msg = msg + "\n - Código do Pix"
+      //       }else{
 
-              document.getElementById('NumeroCartaoCensurado').innerHTML = document.getElementById('CodPix').value;
+      //         document.getElementById('NumeroCartaoCensurado').innerHTML = document.getElementById('CodPix').value;
 
-            }
+      //       }
 
-       }
-      }
+      //  }
+      // }
 
        
 
        if(msg != ""){
          alert("Antes de prosseguir, preencha os seguintes campos:\n" + msg)
        }else{
-          $("[id='telas'] > [id!='TelaConfirmacao']").attr({style: "display:none"});
-          $("[id='telas'] > [id='TelaConfirmacao']").attr({style: "display:block"});
-          } 
-        } 
-     if(numero == "4"){
             if (window.confirm("Você tem certeza que quer finalizar seu agendamento?\nConfirme suas informações antes de prosseguir.")) {
               var formdata = new FormData($("form[name='formPagamento']")[0]);
                 $.ajax({
@@ -499,6 +502,7 @@
                     alert('Ocorreu um erro interno, por favor contate um administrador!');
                   }
                   });
+              }
             }
         }  
     }
