@@ -106,8 +106,9 @@
 						</thead>
 						<tbody style="background-color: white;">
 							<?php while($row = mysqli_fetch_array($result)){
-								echo '<tr>';
-								echo '<td class="column1">';
+								echo '<tr style="cursor:pointer" onclick="window.location.href=`EdicaoAgendamento.php?id=';
+								echo $row['id'];
+								echo '`"><td class="column1">';
 								echo date("d/m/Y", strtotime($row['data_inicio']));
 								echo '</td>';
 								echo '<td class="column2">';
