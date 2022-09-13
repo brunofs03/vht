@@ -122,7 +122,7 @@
     <div class="container">
         <div class="panel-footer2">
             <button class="btn2 back-btn2" type="button" onclick="MudaFrame('1')">Voltar</button>
-            <button class="btn2 next-btn2" type="button" onclick="MudaFrame('3')">Próximo</button>  
+            <button class="btn2 next-btn2" type="button" onclick="MudaFrame('3')" id="botaoMercadoP"><div id="spinnerFirst" style="display:none;width: fit-content;float: left;margin-left: 15px;"><i class="fas fa-spinner  fa-spin"></i></div> Próximo</button>  
         </div>
     </div>
     <br>
