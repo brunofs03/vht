@@ -56,7 +56,9 @@
 
     $id = $_GET['id'];
 
-    $sql = "select * from agendamentos where DATEDIFF(data_inicio, now()) >= 0 and id = " .$id;
+    $sql = "select * from agendamentos
+    inner join pagamentos on pagamentos.id_agendamento = agendamentos.id
+    where DATEDIFF(data_inicio, now()) >= 0 and status = 1 and agendamentos.id_quarto = " .$id;
     
     $result = mysqli_query($link, $sql);
 

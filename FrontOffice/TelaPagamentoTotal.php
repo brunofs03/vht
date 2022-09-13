@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontAwesomeMain.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
   <link rel="stylesheet" href="/VHT/FrontOffice/Content/fonts/FontFamilyRoboto.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!--- Importação Javascript --->
   <script src="/VHT/FrontOffice/Content/library/jquery.min.js"></script>
   <script src="/VHT/FrontOffice/Content/library/bootstrap.min.js"></script>
@@ -426,67 +428,11 @@
         } 
      if(numero == "3"){
 
-        $("[id='telas'] > [id!='TelaPagamento']").attr({style: "display:none"});
-        $("[id='telas'] > [id='TelaPagamento']").attr({style: "display:block"});
-        } 
-     if(numero == "4"){
-
-
-
-       
-      var msg = "";
-       
-      // if(document.querySelector('input[name="payment"]:checked') == null){
-      //    msg = msg + "\n - Método de pagamento"
-      //  }else{
-
-      //     if(document.querySelector('input[name="payment"]:checked').id != 'pix'){
-
-      //     if(document.getElementById('cardholder').value == ""){
-      //       msg = msg + "\n - Nome do titular"
-      //     }
-      //     if(document.getElementById('dateVencimento').value == ""){
-      //       msg = msg + "\n - Data de vencimento"
-      //     }
-      //     if(document.getElementById('verification').value == ""){
-      //       msg = msg + "\n - CVV / CVC"
-      //     }
-      //     if(document.getElementById('cardnumber').value == ""){
-      //       msg = msg + "\n - Número do cartão"
-      //     }else{
-
-      //       var cardParts = document.getElementById('cardnumber').value.split(" ")
-      //       if(cardParts.length != 4){
-      //       msg = msg + "\n - Número do cartão"
-      //       }else{
-      //         document.getElementById('NumeroCartaoCensurado').innerHTML = "**** **** **** " + cardParts[3];
-      //       }
-         
-      //   }
-
-      //  }else{
-
-      //       if(document.getElementById('PixOwner').value == ""){
-      //         msg = msg + "\n - Nome do dono do Pix"
-      //       }
-      //       if(document.getElementById('CodPix').value == ""){
-      //         msg = msg + "\n - Código do Pix"
-      //       }else{
-
-      //         document.getElementById('NumeroCartaoCensurado').innerHTML = document.getElementById('CodPix').value;
-
-      //       }
-
-      //  }
-      // }
-
-       
-
-       if(msg != ""){
-         alert("Antes de prosseguir, preencha os seguintes campos:\n" + msg)
-       }else{
-            if (window.confirm("Você tem certeza que quer finalizar seu agendamento?\nConfirme suas informações antes de prosseguir.")) {
+        if (window.confirm("Você deseja iniciar o pagamento?\nConfirme suas informações antes de prosseguir.")) {
               var formdata = new FormData($("form[name='formPagamento']")[0]);
+
+                BloqueiaInput(1);
+
                 $.ajax({
                   method:"POST",
                   url: 'ajax/criarNovoAgendamento.php',
@@ -495,16 +441,22 @@
                   contentType: false,
 
                   success: function(retorno){
-                      $("[id='telas'] > [id!='TelaFinalizar']").attr({style: "display:none"});
-                      $("[id='telas'] > [id='TelaFinalizar']").attr({style: "display:block"});
+                    if(retorno.init_point != undefined){
+                     window.location.href= retorno.init_point
+                    }else{
+                    alert('Ocorreu um erro interno, por favor verifique sua conexão!');
+                     BloqueiaInput(2);
+
+                    }
                   },
                   error: function(){
                     alert('Ocorreu um erro interno, por favor contate um administrador!');
+                     BloqueiaInput(2);
                   }
                   });
               }
-            }
-        }  
+
+        } 
     }
 
 
@@ -517,9 +469,21 @@ $('#txtCep').mask('00000-000');
 $('#txtCpf').mask('000.000.000-00');
 $('#txtCelular').mask('(00) 00000-0000');
 $('#txtTelefone').mask('(00) 0000-0000');
-$('#cardnumber').mask('0000 0000 0000 0000');
-$('#verification').mask('000');
-$('#dateVencimento').mask('00/00');
+
+function BloqueiaInput(tipo){
+  if(tipo == 1){ 
+    document.getElementById('botaoMercadoP').disabled = 'disabled'
+    document.getElementById('botaoMercadoP').style.background = '#787878'
+    document.getElementById('botaoMercadoP').style.cursor = 'not-allowed'
+    document.getElementById('spinnerFirst').style.display = ''
+  }else{
+    document.getElementById('botaoMercadoP').disabled = ''
+    document.getElementById('botaoMercadoP').style.background = '#363636'
+    document.getElementById('botaoMercadoP').style.cursor = ''
+    document.getElementById('spinnerFirst').style.display = 'none'
+
+  }
+}
 
 </script>
 

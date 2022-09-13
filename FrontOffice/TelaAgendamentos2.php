@@ -44,6 +44,50 @@
 	tbody tr:hover {
 		background-color: #dbdbdb;
 	}
+
+
+    .pago{
+            color: white;
+            font-size: 13px;
+            background-color: green;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 7px;
+            width: 120px;
+            text-align: center;
+            margin: auto;
+
+    }
+    .naoPago {
+     
+            color: white;
+            font-size: 13px;
+            background-color: #838383;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 7px;
+            width: 120px;
+            text-align: center;
+            margin: auto;
+    }
+    .cancelado {
+     
+            color: white;
+            font-size: 13px;
+            background-color: red;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-right: 14px;
+            padding-left: 14px;
+            border-radius: 7px;
+            width: 120px;
+            text-align: center;
+            margin: auto;
+    }
 	</style>
 </head>
 
@@ -77,9 +121,10 @@
     require_once "config.php";
 
     $id = $_SESSION['id'];
-    $sql = "SELECT * FROM `agendamentos` inner join pagamentos on pagamentos.id_agendamento = agendamentos.id inner join quartos on agendamentos.id_quarto = quartos.id where id_usuario = " .$id;
+    $sql = "SELECT *, pagamentos.data_criacao as dataPagCria, pagamentos.id as idPagamento FROM `agendamentos` inner join pagamentos on pagamentos.id_agendamento = agendamentos.id inner join quartos on agendamentos.id_quarto = quartos.id where id_usuario = " .$id;
     
     $result = mysqli_query($link, $sql);
+
 
             
   ?>
@@ -95,30 +140,35 @@
 					<table>
 						<thead>
 							<tr class="table100-head">
-								<th class="column1">Data de Início</th>
-								<th class="column2">Data Final</th>
-								<th class="column3">Data agendamento</th>
-								<th class="column3">Hora agendamento</th>
-								<th class="column4">Preço por dia</th>
-								<th class="column5">Total</th>
-								<th class="column6">Quarto</th>
+								<th class="column0">Protocolo</th>
+								<th class="column1">Quarto</th>
+								<th class="column2">Início de estadia</th>
+								<th class="column3">Fim de estadia</th>
+								<th class="column4">Data agendamento</th>
+								<th class="column5">Preço da diária</th>
+								<th class="column6">Total</th>
+								<th class="column7">Status</th>
 							</tr>
 						</thead>
 						<tbody style="background-color: white;">
 							<?php while($row = mysqli_fetch_array($result)){
+
 								echo '<tr style="cursor:pointer" onclick="window.location.href=`EdicaoAgendamento.php?id=';
-								echo $row['id'];
-								echo '`"><td class="column1">';
-								echo date("d/m/Y", strtotime($row['data_inicio']));
+								echo $row['idPagamento'];
+								echo '`"><td class="column0">';
+								echo $row['idPagamento'];
+								echo '</td>';
+								echo '<td class="column1">';
+								echo $row['num_quarto'];
 								echo '</td>';
 								echo '<td class="column2">';
-								echo date("d/m/Y", strtotime($row['data_fim']));
+								echo date("d/m/Y", strtotime($row['data_inicio']));
 								echo '</td>';
 								echo '<td class="column3">';
-								echo date("d/m/Y", strtotime($row['data_criacao']));
+								echo date("d/m/Y", strtotime($row['data_fim']));
 								echo '</td>';
 								echo '<td class="column4">';
-								echo date("H:i:s", strtotime($row['data_criacao']));
+								echo date("d/m/Y H:i:s", strtotime($row['dataPagCria']));
 								echo '</td>';
 								echo '<td class="column5">R$ ';
 								echo $row['preco_diaria'];
@@ -126,9 +176,24 @@
 								echo '<td class="column6">R$ ';
 								echo $row['preco_total'];
 								echo '</td>';
-								echo '<td class="column7">';
-								echo $row['num_quarto'];
-								echo '</td>';
+								echo '<td class="column7"><div class="';
+								if($row['status'] == 1){
+                                    echo "pago";
+                                }else if ($row['status'] == 0){
+                                    echo "naoPago";
+                                }else{
+                                    echo "cancelado";
+                                }; 
+                                echo '">';
+
+								if($row['status'] == 1){
+									echo "Pagamento efetuado";
+                                }else if ($row['status'] == 0){
+									echo "Pagamento pendente";
+								}else{
+									echo "Cancelado";
+								}
+								echo '</div></td>';
 								echo '</tr>';
 								};
 							?>
