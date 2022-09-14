@@ -52,3 +52,4 @@
   </div>
 </nav>
 </header>
+  <link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 

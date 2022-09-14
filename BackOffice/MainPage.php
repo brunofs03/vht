@@ -10,7 +10,8 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>VHT</title>
+  <title>Virtual Hotel Tech</title>
+<link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
   <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="Content/vendor/bootstrap/css/bootstrap.min.css">

@@ -97,7 +97,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <html style="font-size: 16px;">
 <head>
-	<title>VHT</title>
+	<title>Virtual Hotel Tech</title>
+<link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="Content/vendor/bootstrap/css/bootstrap.min.css">

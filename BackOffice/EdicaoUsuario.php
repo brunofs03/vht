@@ -238,7 +238,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <title>VHT</title>
+  <title>Virtual Hotel Tech</title>
+<link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
 </head>
 
 
