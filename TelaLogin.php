@@ -193,8 +193,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="stylesheet" href="FrontOffice/Content/css/style.css">
 
 
-  <title>VHT</title>
-  <link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
+  <title>Virtual Hotel Tech</title>
+<link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
+  
 </head>
 
 <body style="height:100%">
