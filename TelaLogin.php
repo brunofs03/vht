@@ -165,6 +165,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 <head>
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -193,6 +194,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
   <title>VHT</title>
+  <link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
 </head>
 
 <body style="height:100%">

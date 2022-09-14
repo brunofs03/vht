@@ -174,7 +174,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <!-- Style -->
   <link rel="stylesheet" href="Content/css/style.css">
 
-  <title>VHT</title>
+  <title>Virtual Hotel Tech</title>
+<link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
 </head>
 
 <body>

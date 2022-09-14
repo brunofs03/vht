@@ -42,7 +42,8 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <title>VHT</title>
+  <title>Virtual Hotel Tech</title>
+<link rel="icon" href="/VHT/FrontOffice/images/estrela.png"> 
 
   <style>
     .u-border-grey-30, .u-separator-grey-30:after {
