@@ -397,7 +397,7 @@ require_once "config.php";
   	<input type="hidden" name="hdnAgendamento" id="hdnAgendamento" value="0">
       <br>
 		<br>
-		    <div class="container" style="background-color: rgb(255, 255, 255);box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);height: 500px;">
+		    <div class="container" style="background-color: rgb(255, 255, 255);box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);min-height: 500px;">
 		        <br>
 
 
@@ -439,10 +439,10 @@ require_once "config.php";
 
 
 				        <br>
-				        <div style="overflow: auto;word-break: break-word;border: 1px solid #c4c4c4;max-width:80%;margin-left:10%">
-				            <div id="confirmacaoTables">
-				                <div style="width:50%;float:left;border-right: 1px solid #eee;border-left:1px solid #eee;">
-				                <label style="border-bottom:1px solid #eee;width:100%;border-top:1px solid #eee;width:100%;border-left:1px solid #eee;width:100%;text-align:center;font-size:20px;padding:7px;background-color: #363636;color: white !important;margin: 0;">Dados Pessoais</label>
+                <div style="overflow: auto;word-break: break-word;max-width:80%;margin-left:10%">
+                    <div id="confirmacaoTables" class="row" style="margin:0 !important">
+                        <div class="col-sm-6" style="margin-bottom: 10px;">
+                        <label style="border-bottom:1px solid #eee;width:100%;border-top:1px solid #eee;width:100%;border-left:1px solid #eee;width:100%;text-align:center;font-size:20px;padding:7px;background-color: #363636;color: white !important;margin: 0;">Dados Pessoais</label>
 				                    <table>
 				                        <tbody>
 				                            <tr>
@@ -468,9 +468,9 @@ require_once "config.php";
 				                        </tbody>
 				                    </table>
 				                </div>
-				                <div style="width:50%;float:left;border-right: 1px solid #eee;" id="quartoConfirmation">
-				                <label style="border-bottom:1px solid #eee;width:100%;border-top:1px solid #eee;width:100%;text-align:center;font-size:20px;padding:7px;background-color: #363636;color: white !important;margin: 0;">Dados do Quarto</label>
-				                    <table>
+                          <div class="col-sm-6" id="quartoConfirmation" style="margin-bottom: 10px;">
+                          <label style="border-bottom:1px solid #eee;width:100%;border-top:1px solid #eee;width:100%;text-align:center;font-size:20px;padding:7px;background-color: #363636;color: white !important;margin: 0;">Dados do Quarto</label>
+                              <table>
 				                        <tbody>
 				                            <tr>
 				                                <td>Quarto:</td>
