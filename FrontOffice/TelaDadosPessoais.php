@@ -1,3 +1,18 @@
+
+
+<?php 
+    require_once "config.php";
+
+    if(!empty($logado)){
+    $id = $_SESSION["id"];
+    $sql = "SELECT  * FROM  usuarios where id = " .$id;
+    
+    $result = mysqli_query($link, $sql);
+
+    $row = mysqli_fetch_array($result);
+};
+?>
+
 <br>
 <br>
     <div class="container" style="background-color: rgb(255, 255, 255);box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);min-height: 580px;">
@@ -19,11 +34,11 @@
             <div class="row">
                 <div class="col-sm-3">
                     <label>Nome</label> <span style="color:red">*</span>
-                    <input type="text" class="form-control" id="txtNome" name="txtNome">
+                    <input type="text" class="form-control" id="txtNome" name="txtNome" value="<?php if(!empty($logado)){echo($row["nome"]);};?>">
                 </div>
                 <div class="col-sm-3">
                     <label>Sobrenome</label> <span style="color:red">*</span>
-                    <input type="text" class="form-control" id="txtSobrenome" name="txtSobrenome">
+                    <input type="text" class="form-control" id="txtSobrenome" name="txtSobrenome" value="<?php if(!empty($logado)){echo($row["sobrenome"]);};?>">
                 </div>
                 <div class="col-sm-3">
                     <label>CPF</label> <span style="color:red">*</span>
@@ -36,17 +51,17 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-sm-6">
-                    <label>Endereço</label>
-                    <input type="text" class="form-control" id="txtEndereco" name="txtEndereco">
+                <div class="col-sm-3">
+                    <label>CEP</label> <span style="color:red">*</span>
+                    <input type="text" class="form-control" id="txtCep" name="txtCep">
                 </div>
                 <div class="col-sm-3">
                     <label>Cidade</label>
                     <input type="text" class="form-control" id="txtCidade" name="txtCidade">
                 </div>
-                <div class="col-sm-3">
-                    <label>CEP</label> <span style="color:red">*</span>
-                    <input type="text" class="form-control" id="txtCep" name="txtCep">
+                <div class="col-sm-6">
+                    <label>Endereço</label>
+                    <input type="text" class="form-control" id="txtEndereco" name="txtEndereco">
                 </div>
             </div>
             <hr>
@@ -59,7 +74,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <label>Email</label> <span style="color:red">*</span>
-                    <input type="text" class="form-control" id="txtEmail" name="txtEmail">
+                    <input type="text" class="form-control" id="txtEmail" name="txtEmail" value="<?php if(!empty($logado)){echo($row["email"]);};?>">
                 </div>
                 <div class="col-sm-3">
                     <label>Telefone</label>

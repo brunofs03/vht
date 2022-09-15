@@ -6,6 +6,8 @@
 
 <html style="font-size: 16px;">
 <head>
+	
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css" href="Content/css/util.css">
 	<link rel="stylesheet" type="text/css" href="Content/css/main.css">

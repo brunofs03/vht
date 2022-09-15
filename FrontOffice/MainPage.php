@@ -87,21 +87,21 @@
       <div style="margin: -131px auto 40px 0;">
          <div class="row">
             <div class="col-sm-4">
-               <div style="color: #ffffff;background-color: #858e99;height: 350px;padding: 15px;">
+               <div style="color: #ffffff;background-color: #858e99;height: 350px;padding: 15px;margin-bottom: 10px;">
                   <img src="Images/trofeisLogo.png" alt="Logo Trofeis" style="width:75px;margin-top:20px">
                   <h3 class="textoValorPrincipal">Atendimento De Primeira Classe</h3>
                   <p class="SubTextoValor">Ganhadores do prêmio World Boutique Hotel Awards em 2019.</p>
                </div>
             </div>
             <div class="col-sm-4">
-               <div style="color: #111111;background-color: #e0e5eb;height: 350px;padding: 15px;">
+               <div style="color: #111111;background-color: #e0e5eb;height: 350px;padding: 15px;margin-bottom: 10px;">
                   <img src="Images/CamaLogo.png" alt="Logo Cama" style="width:75px;margin-top:20px">
                   <h3 class="textoValorPrincipal">Sempre Com Um Comforto Ilimitado</h3>
                   <p class="SubTextoValor">Você vai se impressionar com as facilidades que proporcionamos.</p>
                </div>
             </div>
             <div class="col-sm-4">
-               <div style="color: #111111;background-color: #ccd3db;height: 350px;padding: 15px;">
+               <div style="color: #111111;background-color: #ccd3db;height: 350px;padding: 15px;margin-bottom: 10px;">
                   <img src="Images/CoracaoLogo.png" alt="Logo Coração" style="width:75px;margin-top:20px">
                   <h3 class="textoValorPrincipal">Colocamos Nosso Coração Em Tudo Que Fazemos</h3>
                   <p class="SubTextoValor">Funcionários treinados para sempre colocar o cliente em primeiro lugar.</p>
@@ -116,7 +116,7 @@
 <!-- Seção do texto sobre viajante local -->
 
   <section>
-   <div class="container" style="min-height: 806px;">
+   <div class="container" style="min-height: 700px;margin-bottom: 50px;">
       <div class="row" style="margin-top:100px">
          <div class="col-sm-6">
             <div style="background-image: url(/VHT/FrontOffice/images/RestauranteNoite.jpeg);min-height: 571px;background-position: 50% 50%;flex: 0 0 100%;max-width: 100%;overflow:visible;background-position: center;background-size: cover;">
@@ -140,7 +140,7 @@
             </div>
             <div class="row">
                <div class="col-sm-6">
-                  <p style="margin-top: 20px;margin-bottom: 20px;">Nossa Premiação foi avaliada pessoalmente por um membro do time de juizes, certificando que todos os nossos reconhecimentos foram dados pela capacidade de encantar o publico local
+                  <p style="margin-top: 20px;margin-bottom: 20px;">Nossa premiação foi avaliada pessoalmente por um membro do time de juizes, certificando que todos os nossos reconhecimentos foram dados pela capacidade de encantar o publico local.
                   </p>
                </div>
                <div class="col-sm-6">
@@ -180,8 +180,8 @@
         </div>
         <div class="col-sm-9">
           <br><br>
-          <p> Esse lindo hotel fica na parte oeste de Alphaville, Sua localização faz com que seja de fácil acesso a qualquer um vindo do centro. Um lugar perfeito, calmo e confortável, onde você pode passar seu tempo na varanda olhando a vista, na piscina, ou vendo os shows no salão de festas, o serviço aqui é impecável.</p>
-          <h5 style="font-family: Georgia, serif !important;    margin: 20px 0 25px;font-weight:400;font-size: 20px;">Jeniffer L, Postado no Trivago.com Abril, 2016</h5>
+          <p> Esse lindo hotel fica na parte oeste de Alphaville, sua localização faz com que seja de fácil acesso a qualquer um vindo do centro. Um lugar perfeito, calmo e confortável, onde você pode passar seu tempo na varanda olhando a vista, na piscina, ou vendo os shows no salão de festas, o serviço aqui é impecável.</p>
+          <h5 style="font-family: Georgia, serif !important;    margin: 20px 0 25px;font-weight:400;font-size: 14px;">Jeniffer L, Postado no Trivago.com Abril, 2016</h5>
         </div>
       </div>
     </div>

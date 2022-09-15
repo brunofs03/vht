@@ -355,95 +355,82 @@ div.datepicker {
   ?>
 
     <div style="background-color:#e6e6e6">
-        <section id="carousel_5804" style="height: 831px;">
-            <div class="u-clearfix u-sheet u-sheet-1" style="min-height: 0px;">
-                <div class="u-align-center-lg u-align-center-md u-align-center-xl u-align-center-xs u-container-style u-group u-opacity u-opacity-90 u-palette-5-light-3 u-group-1" style="width: 482px;min-height: 156px;margin: 15px auto;">
-                    <div class="u-container-layout u-valign-middle u-container-layout-1">
-                        <h2 class="u-align-center-sm u-custom-font u-font-georgia u-text u-text-1"  style="font-family: Roboto;font-size: 40px;">Quarto <?php echo $row['num_quarto'] ?></h2>
-                        <img src="images/faixaDourada.png" alt="" class="u-image u-image-default u-image-1" data-image-width="680" data-image-height="80">
-                    </div>
-                </div>
+        <div style="background-color:#292d33;padding:30px">
+            <h2 class="u-align-center-sm u-custom-font u-font-georgia u-text u-text-1"  style="font-family: Roboto;font-size: 40px;text-align:center;margin: 0;color:white">Quarto <?php echo $row['num_quarto'] ?></h2>
+            <div style="display: flex;justify-content: center;">
+                <img src="images/faixaDourada.png" alt="Faixa dourada" style="max-width: 640px;width: -webkit-fill-available;">
             </div>
-            <div class="limiter">
-            <div class="u-size-30">
-                <div class="u-layout-col">
-                    <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-1">
-                        <div class="u-container-layout u-valign-middle-sm u-valign-middle-xl u-valign-middle-xs">
-                            <div class="formQuarto" style="border: 0.1em solid #939393;">
-                                <div id="items-wrapper" class="carrosel" style="border-width: 1px;">
-                                        <img class="d-block w-100" src="<?php echo $row['link']; ?>" style="height: 350px;" alt="Imagem do quarto">
+        </div>
+        <div class="container" style="background-color:white">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="<?php echo $row['link']; ?>" style="max-height: 350px;width: -webkit-fill-available;border:1px solid #333333" alt="Imagem do quarto">
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 style="margin-bottom: 0 !important;font-size:30px;text-align: center">A partir de R$ <?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?></h2>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div style="display: flex;margin-bottom: 5px;">
+                                <div class="status" style="width:125px">
+                                    <h2 style="font-size:20px;margin: 0;margin-top: 6px;">Classificação:</h2>
                                 </div>
-
-                                <div class="informacoes">
-                                    <div  style="border-bottom: 2px solid #cdcdcd;height: 180px;width:100%">
-                                        <h2 style="margin-top: 0 !important;">A partir de R$ <?php echo number_format($row['preco_diaria'], 2, ',', ' '); ?></h2>
-                                        <div style="margin-bottom: 10px;margin-top:10px;font-size: 20px;">
-
-
-                                        <div class="status" style="width:125px">Classificação:</div>
-                                        <?php 
-                                            if($row['classificacao'] == 1){
-                                                echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
-                                            }else if($row['classificacao'] == 2){
-                                                echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
-                                            }else if($row['classificacao'] ==3){
-                                                echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
-                                            } ?>
-                                        </div>
-                                        <br>
-                                        <div class="status" style="width:125px">
-                                            <h2 style="font-size:20px;margin: 0;margin-top: 6px;">Status:</h2>
-
-                                        </div>
-                                        <div class="<?php 
-                                        if($row['disponibilidade'] == 'Disponível'){
-                                            echo "livre";
-                                        }else{
-                                            echo "ocupado";
-                                        }; 
-
-
-
-                                            ?>">
-                                            <?php echo $row['disponibilidade']; ?>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <div style="border-bottom: 2px solid #cdcdcd;height: 151px;">
-                                        <h5 style="width: 417px;"><?php echo $row['descricao']; ?></h5>
-                                    </div>
+                                    <?php 
+                                        if($row['classificacao'] == 1){
+                                            echo "<div style='color: white;font-size: 18px;background-color: #9c9c9c;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Standard</div>";
+                                        }else if($row['classificacao'] == 2){
+                                            echo "<div style='color: white;font-size: 18px;background-color: crimson;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Master</div>";
+                                        }else if($row['classificacao'] ==3){
+                                            echo "<div style='color: white;font-size: 18px;background-color: darkgoldenrod;padding-top: 6px;padding-bottom: 6px;padding-right: 14px;padding-left: 14px;border-radius: 7px;width: 120px;text-align:center;margin: auto;'>Deluxe</div>";
+                                        } ?>
                                 </div>
-
-                                <div class="informacoes" style="top: 411px;left: 14px;" <?php echo (!(isset($_SESSION["id"]))) ? 'hidden' : '' ?>>
-                                    <div class="data1" style="width: 245px;">
-                                        <!-- <label for="dataInicial">Data Inicial</label>
-                                        <input type="date" name="dataInicial" id="dataInicial" class="form-control" style="background-color: gainsboro;">
- -->
-                                    </div>
-                                    <div class="data2" style="width: 245px;">
-                                        <!-- <label for="dataFinal">Data Final</label>
-                                        <input type="date" name="dataFinal" id="dataFinal" class="form-control" style="background-color: gainsboro;"> -->
-                                    </div>
-
-
-                                    <div class="u-form-group u-form-submit" id="btns">
-                                        <a href="/VHT/FrontOffice/TelaResultadoExplorar.php" class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1"  style="margin-right: 20px;margin-left: 32px;"><< Voltar</a>
-                                        <input type="button" value="submit" class="u-form-control-hidden">
-
-                                        <a <?php if($row['disponibilidade'] == 'Disponível'){echo 'data-toggle="modal" data-target="#modalCriacao"';} ?> class="u-btn u-btn-round u-btn-submit u-button-style u-font-georgia u-palette-5-base u-btn-1" style="width: 200px;<?php if($row['disponibilidade'] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row['disponibilidade'] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
-                                        <input type="button" value="submit" class="u-form-control-hidden">
-
-                                    </div>
-                                 </div>
                             </div>
-                            
+                        <div class="col-sm-6">
+                            <div style="display: flex;margin-bottom: 5px;">
+                               <div class="status" style="width:125px">
+                                    <h2 style="font-size:20px;margin: 0;margin-top: 6px;">Status:</h2>
+
+                                </div>
+                                <div class="<?php 
+                                if($row['disponibilidade'] == 'Disponível'){
+                                    echo "livre";
+                                }else{
+                                    echo "ocupado";
+                                }; 
+
+
+
+                                    ?>">
+                                    <?php echo $row['disponibilidade']; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5><?php echo $row['descricao']; ?></h5>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+            <div <?php echo (!(isset($_SESSION["id"]))) ? 'hidden' : '' ?>>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="/VHT/FrontOffice/TelaResultadoExplorar.php" style="padding: 10px;border-radius: 5px;color: #111111 !important;background-color: #b9c1cc !important;cursor:pointer;text-decoration: none">Voltar</a>
+
+                        <a <?php if($row['disponibilidade'] == 'Disponível'){echo 'data-toggle="modal" data-target="#modalCriacao"';} ?>  style="margin-left: 32px;padding: 10px;border-radius: 5px;color: #111111 !important;background-color: #b9c1cc !important;cursor:pointer<?php if($row['disponibilidade'] != 'Disponível'){echo "cursor:not-allowed";} ?>" <?php if($row['disponibilidade'] != 'Disponível'){echo "disabled";} ?>>Agendar</a>
+                    </div>
+                </div>
+                <br>
+            </div>
         </div>
-        </section>
        
     </div>
 

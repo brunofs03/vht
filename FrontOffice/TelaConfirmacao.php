@@ -60,15 +60,15 @@
         </div>
         <br>
         <br>
-        <div style="overflow: auto;word-break: break-word;border: 1px solid #c4c4c4;max-width:80%;margin-left:10%">
-            <div id="confirmacaoTables">
-                <div style="width:50%;float:left;border-right: 1px solid #eee;border-left:1px solid #eee;">
+        <div style="overflow: auto;word-break: break-word;max-width:80%;margin-left:10%">
+            <div id="confirmacaoTables" class="row" style="margin:0 !important">
+                <div class="col-sm-6" style="margin-bottom: 10px;">
                 <label style="border-bottom:1px solid #eee;width:100%;border-top:1px solid #eee;width:100%;border-left:1px solid #eee;width:100%;text-align:center;font-size:20px;padding:7px;background-color: #363636;color: white !important;margin: 0;">Dados Pessoais</label>
                     <table>
                         <tbody>
                             <tr>
-                                <td>Nome:</td>
-                                <td id="nomeConfirmar"></td>
+                                <td style="width:50%">Nome:</td>
+                                <td style="width:50%" id="nomeConfirmar"></td>
                             </tr>
                             <tr>
                                 <td>Sobrenome:</td>
@@ -89,13 +89,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="width:50%;float:left;border-right: 1px solid #eee;" id="quartoConfirmation">
+                <div class="col-sm-6" id="quartoConfirmation" style="margin-bottom: 10px;">
                 <label style="border-bottom:1px solid #eee;width:100%;border-top:1px solid #eee;width:100%;text-align:center;font-size:20px;padding:7px;background-color: #363636;color: white !important;margin: 0;">Dados do Quarto</label>
                     <table>
                         <tbody>
                             <tr>
-                                <td>Quarto:</td>
-                                <td><?php echo $row['num_quarto'] ?></td>
+                                <td style="width:50%">Quarto:</td>
+                                <td style="width:50%"><?php echo $row['num_quarto'] ?></td>
                             </tr>
                             <tr>
                                 <td>Preço diária:</td>
