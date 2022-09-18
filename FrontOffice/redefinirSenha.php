@@ -32,6 +32,8 @@
             mysqli_stmt_close($stmt);
         }
 
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
 		$message = '
 			<html>
 				   <body >
@@ -85,7 +87,7 @@
 				                              <table id="tblDados" style="border-collapse: collapse !important;font-family: Calibri;font-size: 15px;width: 100%;color:#595959">
 				                                 <tr class="columSolicitacao">
 				                                    <td style="font-size: 15px;" colspan="2">
-				                                       Link para redefinir senha: <br><a href="/VHT/FrontOffice/AlterarSenhaEmail.php?token=' .$tokenVar .'" target=”_blank”>/VHT/FrontOffice/AlterarSenhaEmail.php</a>
+				                                       Link para redefinir senha: <br><a href="' .$actual_link .'/VHT/FrontOffice/AlterarSenhaEmail.php?token=' .$tokenVar .'" target=”_blank”>/VHT/FrontOffice/AlterarSenhaEmail.php</a>
 				                                    </td>
 				                                 </tr>
 				                                 <tr class="columSolicitacao">
