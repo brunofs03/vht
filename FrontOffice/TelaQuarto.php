@@ -414,7 +414,7 @@ div.datepicker {
                     <hr>
                     <div class="row">
                         <div class="col-sm-12">
-                            <h5><?php echo $row['descricao']; ?></h5>
+                            <h5 style="font-size: 16px;"><?php echo $row['descricao']; ?></h5>
                         </div>
                     </div>
                 </div>
