@@ -1,5 +1,45 @@
 <?php include "sessionStart.php"?>
 
+<?php
+
+require_once "config.php";
+ 
+// Processar informação do form quando for submitado
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+  if(trim($_POST["idApaga"]) != '0'){
+
+    $sql = "SELECT  * FROM  agendamentos WHERE id_quarto = " .$_POST["idApaga"];
+    
+    $result = mysqli_query($link, $sql);
+
+    while($rowAgends = mysqli_fetch_array($result)){
+      $sql = "delete from pagamentos where id_agendamento = " .$rowAgends["id"];
+
+      $stmt = mysqli_prepare($link, $sql);
+
+      mysqli_stmt_execute($stmt);
+
+      $sql = "delete from agendamentos where id = " .$rowAgends["id"];
+
+      $stmt = mysqli_prepare($link, $sql);
+
+      mysqli_stmt_execute($stmt);
+    }
+
+
+    $sql = "delete from quartos where id = " .$_POST["idApaga"];
+
+    $stmt = mysqli_prepare($link, $sql);
+
+    mysqli_stmt_execute($stmt);
+
+  }
+}
+
+
+?>
+
 <!DOCTYPE html>
 
 <!-- Inicio da Importação de todas as bibliotecas usadas -->
@@ -47,6 +87,11 @@
         border: 1px solid #ddd;
     }
 </style>
+
+<form id="formCadastro" name="formCadastro" action="" method="POST" autocomplete="off">
+
+<input type="hidden" id="idApaga" name="idApaga" value="0">
+
 <section style="min-height:500px">
     <div class="container">
         <h1 align="center"><small><b>Edição de quartos</b></small></h1>
@@ -57,6 +102,7 @@
                     <th style="text-align:center !important">Preço base</th>
                     <th style="text-align:center !important">Classificação</th>
                     <th style="text-align:center !important">Editar</th>
+                    <th style="text-align:center !important">Excluir</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,6 +129,9 @@
                 echo "<td align='center'><i class='fas fa-edit' style='font-size:20px;cursor:pointer' onclick='editaQuarto(";
                 echo $row['id'];
                 echo ")'</i></td>";
+                echo "<td align='center'><i class='fas fa-trash' style='font-size:20px;cursor:pointer;color:red' onclick='ApagaQuarto(";
+                echo $row['id'];
+                echo ")'</i></td>";
                 echo "</tr>";
             }
             ?>
@@ -91,12 +140,26 @@
     </div>
 </section>
 
+</form>
+
 <?php include "footer.php" ?>
   
 
 <script>
   function editaQuarto(id){
     window.location.href = 'editaQuarto.php?id=' + id
+  }
+</script>
+
+<script>
+  function ApagaQuarto(id){
+    if(window.confirm('Você realmente deseja fazer isso?')){
+      document.getElementById('idApaga').value = id;
+
+      alert('Quarto excluido com sucesso!');
+
+      document.getElementById('formCadastro').submit();
+    }
   }
 </script>
 
