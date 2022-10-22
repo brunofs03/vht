@@ -186,7 +186,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                           $stmt = mysqli_prepare($link, $sql);
                           mysqli_stmt_execute($stmt);
                           
-                          header("location: TelaLogin.php");
+                          header("location: ../TelaLogin.php");
                         }else{
                             $login_err = "Nome de usuário ou senha inválido.";
                         }
